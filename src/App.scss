@@ -1,0 +1,201 @@
+$sidenav-width: 240px;
+$aside-width: 64px;
+$jira-bg: rgb(244, 245, 247);
+$jira-bg-blue: rgb(7, 71, 166);
+$jira-hover: rgb(235, 236, 240);
+$jira-grey-text: rgb(94, 108, 132);
+$jira-text-highlight: rgb(0, 82, 204);
+$jira-box-shadow: 0 1px 2px 0 rgba(9, 30, 66, 0.33);
+$small-font: 0.8em;
+
+.wrapper {
+
+  .menu-bar {
+    width: $aside-width;
+    background-color: $jira-bg-blue;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    z-index: 1;
+
+    .icon {
+      margin: 1em 0;
+      cursor: pointer;
+    }
+
+    .menu-bar-header {
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-bar-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: calc(100vh - 100px);
+
+      .icon-btm {
+        cursor: pointer;
+        margin-top: auto;
+        margin-bottom: 2em;
+      }
+    }
+  }
+
+  .sidenav {
+    position: fixed;
+    top: 0;
+    left: $aside-width;
+    height: 100vh;
+    background-color: $jira-bg;
+    width: $sidenav-width;
+    border-right: 1px solid rgb(200, 200, 200);
+
+    .sidenav-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2em 1em;
+
+      .sidenav-titles {
+        padding-left: 8px;
+
+        .project-title {
+          font-weight: bold;
+          display: block;
+        }
+
+        .project-subtitle {
+          display: block;
+        }
+      }
+    }
+
+
+    .sidenav-items {
+      list-style: none;
+      padding: 0 1em;
+
+      li {
+        padding: 8px 12px;
+        border-radius: 4px;
+        &:hover {
+          background-color: $jira-hover;
+          color: $jira-text-highlight;
+        }
+
+        .menu-title {
+          padding-left: 1em;
+        }
+      }
+    }
+  }
+
+  .main {
+    padding-left: 320px;
+
+    .board-header {
+      padding: 0 2em;
+      display: flex;
+      min-width: 890px;
+      align-items: center;
+
+      .release-btn {
+        margin-left: auto;
+        padding: 0.5em 1em;
+        border-radius: 6px;
+        background-color: $jira-hover;
+        border: none;
+        color: $jira-grey-text;
+        cursor: pointer;
+        text-transform: capitalize;
+      }
+
+      .board-header-settings {
+        margin-left: 1em;
+      }
+    }
+
+    .scrum-board {
+      display: flex;
+      width: inherit;
+      margin: 0 1.5em;
+
+      .development-step {
+        background-color: $jira-bg;
+        flex: 1;
+        min-width: 200px;
+        margin: 16px 8px;
+        padding: 6px;
+        border-radius: 4px;
+        min-height: 300px;
+        height: fit-content;
+
+        .status-header {
+          text-transform: uppercase;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          margin-bottom: 1em;
+          font-size: $small-font;
+          color: $jira-grey-text;
+
+          .status {
+            font-weight: bold;
+          }
+
+          .item-count {
+            margin-left: 0.5em;
+          }
+
+          .done-icon {
+            padding-right: 4px;
+          }
+        }
+
+        .issue-card {
+          margin: 6px 0;
+          padding: 12px;
+          background-color: white;
+          border-radius: 4px;
+          box-shadow: $jira-box-shadow;
+          cursor: pointer;
+          font-size: $small-font;
+          &:hover {
+            background-color: $jira-hover;
+          }
+
+          .issue-title {
+            padding-bottom: 1em;
+          }
+
+          .info-section {
+            display: flex;
+            align-items: center;
+
+            .icon-red {
+              color: red;
+              margin: 0.2em;
+            }
+
+            .storypoints {
+              background-color: $jira-hover;
+              padding: 0 0.5em;
+              border-radius: 6px;
+            }
+
+            .issue-id {
+              margin-left: auto;
+              color: $jira-grey-text;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
