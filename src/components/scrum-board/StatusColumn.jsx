@@ -1,7 +1,7 @@
 import Issue from "./Issue";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
-import {STATUS_TYPES} from "../../contants";
+import {STATUS_TYPES} from "../../util/contants";
 
 export default function StatusColumn(props) {
     const { name, issues } = props;
@@ -15,7 +15,7 @@ export default function StatusColumn(props) {
                 <span className="item-count">{issues.length}</span>
             </div>
             {issues.map((issue, idx) => {
-                return (<Issue key={idx} title={issue}/>)
+                return (<Issue key={idx} issue={issue}/>)
             })}
         </div>
     );

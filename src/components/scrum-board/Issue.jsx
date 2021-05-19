@@ -1,20 +1,38 @@
-import {faBan, faBug} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {getPriorityColor, getPriorityIcon, getTypeColor, getTypeIcon} from "../../util/util"
+import ReactTooltip from "react-tooltip";
 
 export default function Issue(props) {
-    const {title} = props;
+    const {issue} = props;
 
     return(
         <div className="issue-card">
             <div className="issue-title">
-                <span>{title}</span>
+                <span>{issue.title}</span>
             </div>
             <div className="info-section">
-                <FontAwesomeIcon className="icon-red" icon={faBug} />
-                <FontAwesomeIcon className="icon-red" icon={faBan} />
-                <span className="storypoints">8</span>
-                <span className="issue-id">RFM-101</span>
+                <FontAwesomeIcon
+                    className="issue-icon"
+                    color={getTypeColor(issue.type)}
+                    icon={getTypeIcon(issue.type)}
+                    data-tip={issue.type}
+                />
+                <FontAwesomeIcon
+                    className="issue-icon"
+                    color={getPriorityColor(issue.priority)}
+                    icon={getPriorityIcon(issue.priority)}
+                    data-tip={issue.priority}
+                />
+                <span className="storypoints">{issue.storypoints}</span>
+                <span className="issue-id">RFM-{issue.id}</span>
             </div>
+            <ReactTooltip
+                className="tooltip"
+                place="bottom"
+                type="dark"
+                effect="solid"
+                delayShow={200}
+            />
         </div>
     );
 

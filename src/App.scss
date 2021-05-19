@@ -80,10 +80,13 @@ $small-font: 0.8em;
       padding: 0 1em;
 
       li {
-        padding: 8px 12px;
+        padding: 0.75em;
         border-radius: 4px;
         &:hover {
           background-color: $jira-hover;
+          color: $jira-text-highlight;
+        }
+        &:nth-child(2) {
           color: $jira-text-highlight;
         }
 
@@ -176,8 +179,7 @@ $small-font: 0.8em;
             display: flex;
             align-items: center;
 
-            .icon-red {
-              color: red;
+            .issue-icon {
               margin: 0.2em;
             }
 
@@ -192,6 +194,12 @@ $small-font: 0.8em;
               color: $jira-grey-text;
               text-transform: uppercase;
             }
+          }
+
+          .tooltip {
+            text-transform: lowercase;
+            padding: 2px 4px;
+            font-size: 12px;
           }
         }
       }
