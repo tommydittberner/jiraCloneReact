@@ -159,6 +159,10 @@ $small-font: 0.8em;
           }
         }
 
+        .droppable-container {
+          min-height: inherit;
+        }
+
         .issue-card {
           margin: 6px 0;
           padding: 12px;
