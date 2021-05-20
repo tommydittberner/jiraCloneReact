@@ -1,0 +1,35 @@
+@import "src/variables";
+
+.menu-bar {
+  width: $aside-width;
+  background-color: $jira-bg-blue;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  z-index: 1;
+
+  .menu-bar-icon {
+    margin: 1em 0;
+    cursor: pointer;
+  }
+
+  .menu-bar-header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .menu-bar-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100vh - 100px);
+
+    .menu-bar-btm-icon {
+      margin-top: auto;
+      margin-bottom: 2em;
+    }
+  }
+}

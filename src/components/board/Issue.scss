@@ -1,0 +1,46 @@
+@import 'src/variables';
+
+.issue-card {
+  margin: 6px 0;
+  padding: 12px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: $jira-box-shadow;
+  cursor: pointer;
+  font-size: $small-font;
+  &:hover {
+    background-color: $jira-hover;
+  }
+
+  .issue-title {
+    padding-bottom: 1em;
+  }
+
+  .issue-info {
+    display: flex;
+    align-items: center;
+
+    .issue-icon {
+      margin: 2px 4px;
+    }
+
+    .issue-sp {
+      background-color: $jira-hover;
+      margin-left: 4px;
+      padding: 0 0.5em;
+      border-radius: 6px;
+    }
+
+    .issue-id {
+      margin-left: auto;
+      color: $jira-grey-text;
+      text-transform: uppercase;
+    }
+  }
+
+  .tooltip {
+    text-transform: lowercase;
+    padding: 2px 4px;
+    font-size: 12px;
+  }
+}

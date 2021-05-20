@@ -1,5 +1,5 @@
 import './App.scss'
-import ScrumBoard from "./components/scrum-board/ScrumBoard";
+import Board from "./components/board/Board";
 import Sidenav from "./components/Sidenav";
 import MenuBar from "./components/MenuBar";
 
@@ -9,7 +9,7 @@ function App() {
         <MenuBar />
         <Sidenav />
         <div className="main">
-            <ScrumBoard />
+            <Board />
         </div>
     </div>
 

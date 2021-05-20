@@ -7,8 +7,8 @@ export const ISSUE_TYPES = {
 
 export const STATUS_TYPES = {
     OPEN: "OPEN",
-    IN_PROGRESS: "IN PROGRESS",
-    PEER_REVIEW: "PEER REVIEW",
+    IN_PROGRESS: "IN_PROGRESS",
+    PEER_REVIEW: "PEER_REVIEW",
     DONE: "DONE",
 }
 

@@ -8,6 +8,10 @@ import {
     faCircle, faLongArrowAltDown, faLongArrowAltUp
 } from "@fortawesome/free-solid-svg-icons";
 
+export const removeUnderscore = (input) => {
+    return input.split('_').join(' ');
+}
+
 export const getTypeIcon = (type) => {
     switch (type) {
         case ISSUE_TYPES.BUG:

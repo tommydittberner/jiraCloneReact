@@ -1,0 +1,23 @@
+@import "src/variables";
+
+.board-header {
+  padding: 0 2em;
+  display: flex;
+  min-width: 890px;
+  align-items: center;
+
+  .board-release-btn {
+    margin-left: auto;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    background-color: $jira-hover;
+    border: none;
+    color: $jira-grey-text;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
+
+  .board-header-settings {
+    margin-left: 1em;
+  }
+}

@@ -1,10 +1,10 @@
+import './Board.scss';
 import StatusColumn from "./StatusColumn";
 import {STATUS_TYPES} from "../../util/contants";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEllipsisH} from "@fortawesome/free-solid-svg-icons";
 import {useState, useEffect} from 'react';
 import {DragDropContext} from "react-beautiful-dnd";
 import {fetchIssues} from "../../api/issueService";
+import BoardHeader from "./BoardHeader";
 
 const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -63,7 +63,7 @@ const insertIssuesIntoColumns = (issues) => {
     }
 }
 
-export default function ScrumBoard() {
+export default function Board() {
     const [columns, setColumns] = useState({});
     const [issues, setIssues] = useState([]);
 
@@ -81,14 +81,9 @@ export default function ScrumBoard() {
 
     return (
         <>
-            <div className="board-header">
-                <h1>Board</h1>
-                <button className="release-btn">release</button>
-                <FontAwesomeIcon className="board-header-settings" icon={faEllipsisH}/>
-            </div>
-
+            <BoardHeader />
             <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-                <div className="scrum-board">
+                <div className="board">
                     {Object.entries(columns).map(([columnId, column], index) => {
                         return (
                             <StatusColumn key={columnId} column={column} columnId={columnId}/>

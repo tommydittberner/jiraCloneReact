@@ -1,3 +1,4 @@
+import './Sidenav.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faChartLine,
@@ -23,41 +24,41 @@ export default function Sidenav() {
                 </div>
             </div>
             <ul className="sidenav-items">
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faStream} />
-                    <span className="menu-title">Backlog</span>
+                    <span>Backlog</span>
                 </li>
                 <li>
                     <FontAwesomeIcon icon={faColumns} />
-                    <span className="menu-title">Board</span>
+                    <span>Board</span>
                 </li>
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faChartLine} />
-                    <span className="menu-title">Reports</span>
+                    <span>Reports</span>
                 </li>
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faShippingFast} />
-                    <span className="menu-title">Releases</span>
+                    <span>Releases</span>
                 </li>
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faClone} />
-                    <span className="menu-title">Components</span>
+                    <span>Components</span>
                 </li>
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faTasks} />
-                    <span className="menu-title">Issues</span>
+                    <span>Issues</span>
                 </li>
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faDatabase} />
-                    <span className="menu-title">Repository</span>
+                    <span>Repository</span>
                 </li>
                 <li>
                     <FontAwesomeIcon icon={faPlusSquare} />
-                    <span className="menu-title">Add Item</span>
+                    <span>Add Item</span>
                 </li>
-                <li>
+                <li className="menu-disabled">
                     <FontAwesomeIcon icon={faCog} />
-                    <span className="menu-title">Settings</span>
+                    <span>Settings</span>
                 </li>
             </ul>
         </div>

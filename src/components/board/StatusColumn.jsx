@@ -1,21 +1,23 @@
+import './StatusColumn.scss';
 import Issue from "./Issue";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {STATUS_TYPES} from "../../util/contants";
-import {Droppable, Draggable} from "react-beautiful-dnd";
+import {Draggable, Droppable} from "react-beautiful-dnd";
+import {removeUnderscore} from "../../util/util";
 
 export default function StatusColumn(props) {
-    const { column, columnId } = props;
+    const {column, columnId} = props;
 
-    return(
-        <div className="development-step">
-            <div className="status-header">
+    return (
+        <div className="status-column">
+            <div className="status-column-header">
                 {
                     column.name === STATUS_TYPES.DONE &&
-                    <FontAwesomeIcon className="done-icon" icon={faCheckCircle} />
+                    <FontAwesomeIcon className="done-icon" icon={faCheckCircle}/>
                 }
-                <span className="status">{column.name}</span>
-                <span className="item-count">{column.items.length}</span>
+                <span>{removeUnderscore(column.name)} </span>
+                <span>{column.items.length}</span>
             </div>
 
             <Droppable droppableId={columnId} key={columnId}>
@@ -30,13 +32,13 @@ export default function StatusColumn(props) {
                                 return (
                                     <Draggable key={issue.id} draggableId={issue.id + ""} index={index}>
                                         {(provided) => {
-                                            return(
+                                            return (
                                                 <div
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
                                                     ref={provided.innerRef}
                                                 >
-                                                    <Issue issue={issue} />
+                                                    <Issue issue={issue}/>
                                                 </div>
                                             );
                                         }}
