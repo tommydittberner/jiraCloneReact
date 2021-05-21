@@ -12,12 +12,13 @@ import {
     faTasks
 } from "@fortawesome/free-solid-svg-icons";
 import {faReact} from "@fortawesome/free-brands-svg-icons";
+import {Link} from "react-router-dom";
 
 export default function Sidenav({openCreateDialog}) {
-    return(
+    return (
         <div className="sidenav">
             <div className="sidenav-header">
-                <FontAwesomeIcon icon={faReact} size="3x" />
+                <FontAwesomeIcon icon={faReact} size="3x"/>
                 <div className="sidenav-titles">
                     <span className="project-title">ITF Refinement</span>
                     <span className="project-subtitle">Done with React</span>
@@ -25,31 +26,33 @@ export default function Sidenav({openCreateDialog}) {
             </div>
             <ul className="sidenav-items">
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faStream} />
+                    <FontAwesomeIcon icon={faStream}/>
                     <span>Backlog</span>
                 </li>
-                <li>
-                    <FontAwesomeIcon icon={faColumns} />
-                    <span>Board</span>
-                </li>
+                <Link to="/board" style={{textDecoration: "none"}}>
+                    <li>
+                        <FontAwesomeIcon icon={faColumns}/>
+                        <span>Board</span>
+                    </li>
+                </Link>
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faChartLine} />
+                    <FontAwesomeIcon icon={faChartLine}/>
                     <span>Reports</span>
                 </li>
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faShippingFast} />
+                    <FontAwesomeIcon icon={faShippingFast}/>
                     <span>Releases</span>
                 </li>
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faClone} />
+                    <FontAwesomeIcon icon={faClone}/>
                     <span>Components</span>
                 </li>
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faTasks} />
+                    <FontAwesomeIcon icon={faTasks}/>
                     <span>Issues</span>
                 </li>
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faDatabase} />
+                    <FontAwesomeIcon icon={faDatabase}/>
                     <span>Repository</span>
                 </li>
                 <li onClick={openCreateDialog}>
@@ -57,7 +60,7 @@ export default function Sidenav({openCreateDialog}) {
                     <span>Add Item</span>
                 </li>
                 <li className="menu-disabled">
-                    <FontAwesomeIcon icon={faCog} />
+                    <FontAwesomeIcon icon={faCog}/>
                     <span>Settings</span>
                 </li>
             </ul>
