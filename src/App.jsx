@@ -19,6 +19,12 @@ function App() {
         setIssues([...issues, newIssue]);
     }
 
+    const updateIssue = (updatedIssue) => {
+        let copy = [...issues.filter(i => i.id !== updatedIssue.id)];
+        //no specific order needed since it gets ordered in the column
+        setIssues([...copy, updatedIssue])
+    }
+
     //get issues once initially (and on reload)
     useEffect(() => {
         fetchIssues().then(response => {
@@ -40,7 +46,7 @@ function App() {
                         <Redirect to="/board" />
                     </Route>
                     <Route exact path="/issues/:issueId">
-                        <IssueDetails />
+                        <IssueDetails update={updateIssue} />
                     </Route>
                     <Route exact path="/board">
                         <Board issues={issues} />

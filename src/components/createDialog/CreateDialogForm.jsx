@@ -26,42 +26,49 @@ export default function CreateDialogForm({addIssue}) {
             validationSchema={Yup.object(formValidation)}
             onSubmit={onFormSubmit}
         >
-            <Form>
-                <FormikInput
-                    label="Title"
-                    name="title"
-                    type="text"
-                    placeholder="Add shopping cart page"
-                />
-                <FormikTextarea
-                    label="Description"
-                    name="description"
-                    type="text"
-                    placeholder="Describe your issue"
-                />
-                <div className="form-select-wrapper">
-                    <FormikSelect label="Type" name="issueType" className="form-select">
-                        {Object.values(ISSUE_TYPES).map((type, idx) => (
-                            <option value={type} key={idx}>
-                                {type.toLowerCase()}
-                            </option>
-                        ))}
-                    </FormikSelect>
-                    <FormikSelect label="Priority" name="issuePriority">
-                        {Object.values(PRIORITY_LEVEL).map((priority, idx) => (
-                            <option value={priority} key={idx}>
-                                {priority.toLowerCase()}
-                            </option>
-                        ))}
-                    </FormikSelect>
-                    <FormikSelect label="SP" name="storypoints">
-                        {storyPointValues.map((sp, idx) => (
-                            <option value={sp} key={idx}>{sp}</option>
-                        ))}
-                    </FormikSelect>
-                </div>
-                <button type="submit">Submit</button>
-            </Form>
+            {({isValid, touched}) => (
+                <Form>
+                    <FormikInput
+                        label="Title"
+                        name="title"
+                        type="text"
+                        placeholder="Add shopping cart page"
+                    />
+                    <FormikTextarea
+                        label="Description"
+                        name="description"
+                        type="text"
+                        placeholder="Describe your issue"
+                    />
+                    <div className="form-select-wrapper">
+                        <FormikSelect label="Type" name="issueType" className="form-select">
+                            {Object.values(ISSUE_TYPES).map((type, idx) => (
+                                <option value={type} key={idx}>
+                                    {type.toLowerCase()}
+                                </option>
+                            ))}
+                        </FormikSelect>
+                        <FormikSelect label="Priority" name="issuePriority">
+                            {Object.values(PRIORITY_LEVEL).map((priority, idx) => (
+                                <option value={priority} key={idx}>
+                                    {priority.toLowerCase()}
+                                </option>
+                            ))}
+                        </FormikSelect>
+                        <FormikSelect label="SP" name="storypoints">
+                            {storyPointValues.map((sp, idx) => (
+                                <option value={sp} key={idx}>{sp}</option>
+                            ))}
+                        </FormikSelect>
+                    </div>
+                    <button
+                        type="submit"
+                        disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}
+                    >
+                        Submit
+                    </button>
+                </Form>
+            )}
         </Formik>
     );
 }

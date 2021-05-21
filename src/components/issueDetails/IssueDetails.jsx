@@ -2,13 +2,10 @@ import './IssueDetails.scss';
 import {Link, useHistory} from "react-router-dom";
 import DetailsForm from "../DetailsForm";
 
-export default function IssueDetails() {
+
+export default function IssueDetails({update}) {
     let history = useHistory();
     const issue = history.location.state;
-
-    const updateIssue = (values) => {
-        console.log(values);
-    }
 
     return (
         <div className="details-wrapper">
@@ -18,7 +15,7 @@ export default function IssueDetails() {
                 </li>
             </ul>
             <div className="form-wrapper">
-                <DetailsForm update={updateIssue} issue={issue} />
+                <DetailsForm update={update} issue={issue} />
             </div>
         </div>
     );

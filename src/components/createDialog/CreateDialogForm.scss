@@ -14,12 +14,20 @@ form {
     font-weight: bold;
     border-color: $jira-text-highlight;
     background-color: $jira-bg;
+
+    &:disabled {
+      background-color: white;
+      color: $jira-hover;
+    }
+
     &:hover {
       background-color: $jira-hover;
       transform: scale(1.1);
       transition: 0.2s ease-in-out;
     }
+
   }
+
 
   label {
     font-weight: bold;

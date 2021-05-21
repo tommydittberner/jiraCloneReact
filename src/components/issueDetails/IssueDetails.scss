@@ -1,8 +1,13 @@
 @import "src/variables";
 
 .details-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .form-wrapper {
     margin: 1em;
+    width: 50vw;
+    min-width: 660px;
     max-width: 1280px;
   }
 }

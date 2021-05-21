@@ -27,3 +27,21 @@ export const addNewIssue = async (issue) => {
         })
     }).then(res => res.json())
 }
+
+export const updateIssue = async (id, values) => {
+    let requestParams = "";
+    Object.entries(values).map(([k, v], idx) => {
+        return idx === 0 ?
+            requestParams += "?" + k + "=" + v :
+            requestParams += "&" + k + "=" + v;
+    });
+
+    let url = `http://localhost:8080/api/issue/${id}${requestParams}`;
+    return await fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+        },
+    }).then(res => res.json())
+}
