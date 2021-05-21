@@ -1,0 +1,109 @@
+@import "src/variables";
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  button[type="submit"] {
+    width: 80px;
+    align-self: flex-end;
+    margin-top: 1rem;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: $jira-bg;
+    &:hover {
+      background-color: $jira-hover;
+    }
+  }
+
+  label {
+    font-weight: bold;
+    display: flex;
+    padding: 4px;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 12px 8px;
+    appearance: none;
+    font-size: 1rem;
+    border: 2px solid $jira-hover;
+    color: $jira-grey-text;
+    border-radius: 8px;
+    background-color: $jira-bg;
+  }
+
+  select {
+    padding: 10px 8px;
+    font: inherit;
+    appearance: revert;
+    text-transform: capitalize;
+  }
+
+  textarea {
+    resize: vertical;
+    max-height: 420px;
+    min-height: 200px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+    sans-serif;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border: 2px solid $jira-text-highlight;
+  }
+
+  input:invalid,
+  select:invalid,
+  textarea:invalid {
+    border: 2px solid #ff7d87;
+    box-shadow: none;
+  }
+
+  .error {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: red;
+    width: 420px;
+    margin-top: 0.25rem;
+    &:before {
+      content: "❌ ";
+      font-size: 10px;
+    }
+  }
+
+  .form-select-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    .formik-select {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      &:nth-child(1) {
+        margin-right: 0.5em;
+      }
+
+      &:nth-child(2) {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+      }
+
+      &:nth-child(3) {
+        margin-left: 0.5em;
+      }
+
+      select {
+        flex: 1;
+      }
+    }
+  }
+}

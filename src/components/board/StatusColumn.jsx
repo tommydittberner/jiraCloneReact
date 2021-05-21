@@ -6,9 +6,7 @@ import {STATUS_TYPES} from "../../util/contants";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {removeUnderscore} from "../../util/util";
 
-export default function StatusColumn(props) {
-    const {column, columnId} = props;
-
+export default function StatusColumn({column, columnId}) {
     return (
         <div className="status-column">
             <div className="status-column-header">

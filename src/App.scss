@@ -1,7 +1,6 @@
 @import "variables";
 
-.wrapper {
-  .main {
-    padding-left: 320px;
-  }
+.main {
+  padding-left: $padding-left-plus-16;
 }
+

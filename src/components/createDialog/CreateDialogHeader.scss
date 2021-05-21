@@ -1,0 +1,23 @@
+@import 'src/variables';
+
+.dialog-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .dialog-close-btn {
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      color: $jira-text-highlight;
+      transform: scale(1.1);
+      transition: 0.2s ease;
+    }
+  }
+
+  .dialog-title {
+    margin: 0;
+  }
+}

@@ -3,9 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {getPriorityColor, getPriorityIcon, getTypeColor, getTypeIcon} from "../../util/util"
 import ReactTooltip from "react-tooltip";
 
-export default function Issue(props) {
-    const {issue} = props;
-
+export default function Issue({issue}) {
     return (
         <div className="issue-card">
             <div className="issue-title">

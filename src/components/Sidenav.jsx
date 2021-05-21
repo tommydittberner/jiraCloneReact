@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {faReact} from "@fortawesome/free-brands-svg-icons";
 
-export default function Sidenav() {
+export default function Sidenav({openCreateDialog}) {
     return(
         <div className="sidenav">
             <div className="sidenav-header">
@@ -52,8 +52,8 @@ export default function Sidenav() {
                     <FontAwesomeIcon icon={faDatabase} />
                     <span>Repository</span>
                 </li>
-                <li>
-                    <FontAwesomeIcon icon={faPlusSquare} />
+                <li onClick={openCreateDialog}>
+                    <FontAwesomeIcon icon={faPlusSquare}/>
                     <span>Add Item</span>
                 </li>
                 <li className="menu-disabled">

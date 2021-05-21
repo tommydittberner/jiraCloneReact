@@ -3,7 +3,6 @@ import StatusColumn from "./StatusColumn";
 import {STATUS_TYPES} from "../../util/contants";
 import {useState, useEffect} from 'react';
 import {DragDropContext} from "react-beautiful-dnd";
-import {fetchIssues} from "../../api/issueService";
 import BoardHeader from "./BoardHeader";
 
 const onDragEnd = (result, columns, setColumns) => {
@@ -63,17 +62,8 @@ const insertIssuesIntoColumns = (issues) => {
     }
 }
 
-export default function Board() {
+export default function Board({issues}) {
     const [columns, setColumns] = useState({});
-    const [issues, setIssues] = useState([]);
-
-    useEffect(() => {
-        fetchIssues().then(response => {
-            if (response) {
-                setIssues(response);
-            }
-        });
-    }, []);
 
     useEffect(() => {
         setColumns(insertIssuesIntoColumns(issues));
