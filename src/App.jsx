@@ -5,6 +5,8 @@ import MenuBar from "./components/MenuBar";
 import {useEffect, useState} from "react";
 import CreateDialog from "./components/createDialog/CreateDialog";
 import {fetchIssues} from "./api/issueService";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import IssueDetails from "./components/issueDetails/IssueDetails";
 
 function App() {
     const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -12,15 +14,9 @@ function App() {
 
     const openCreateDialog = () => setCreateDialogOpen(true);
     const closeCreateDialog = () => setCreateDialogOpen(false);
-    const onSubmit = () => {
+    const addIssue = (newIssue) => {
         setCreateDialogOpen(false);
-        //not optimal. With redux we could just insert the new issue into the store
-        //instead of fetching everything again.
-        fetchIssues().then(response => {
-            if (response) {
-                setIssues(response);
-            }
-        });
+        setIssues([...issues, newIssue]);
     }
 
     //get issues once initially (and on reload)
@@ -33,14 +29,25 @@ function App() {
     }, []);
 
     return (
-        <>
+        <BrowserRouter>
             <MenuBar openCreateDialog={openCreateDialog}/>
             <Sidenav openCreateDialog={openCreateDialog}/>
             <div className="main">
-                <CreateDialog open={createDialogOpen} closeDialog={closeCreateDialog} submit={onSubmit} />
-                <Board issues={issues} />
+                <CreateDialog open={createDialogOpen} closeDialog={closeCreateDialog} addIssue={addIssue} />
+                <Switch>
+                    <Route exact path="/">
+                        {/* conditional for login goes here */}
+                        <Redirect to="/board" />
+                    </Route>
+                    <Route exact path="/issues/:issueId">
+                        <IssueDetails />
+                    </Route>
+                    <Route exact path="/board">
+                        <Board issues={issues} />
+                    </Route>
+                </Switch>
             </div>
-        </>
+        </BrowserRouter>
 
     );
 }

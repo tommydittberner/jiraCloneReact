@@ -2,10 +2,20 @@ import './Issue.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {getPriorityColor, getPriorityIcon, getTypeColor, getTypeIcon} from "../../util/util"
 import ReactTooltip from "react-tooltip";
+import {useHistory} from "react-router-dom";
 
 export default function Issue({issue}) {
+    const history = useHistory();
+
+    const navigateToDetails = () => {
+        history.push({
+            pathname: `issues/${issue.id}`,
+            state: issue,
+        });
+    }
+
     return (
-        <div className="issue-card">
+        <div className="issue-card" onClick={navigateToDetails}>
             <div className="issue-title">
                 <span>{issue.title}</span>
             </div>

@@ -1,23 +1,12 @@
 import './StatusColumn.scss';
 import Issue from "./Issue";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
-import {STATUS_TYPES} from "../../util/contants";
 import {Draggable, Droppable} from "react-beautiful-dnd";
-import {removeUnderscore} from "../../util/util";
+import StatusColumnHeader from "./StatusColumnHeader";
 
 export default function StatusColumn({column, columnId}) {
     return (
         <div className="status-column">
-            <div className="status-column-header">
-                {
-                    column.name === STATUS_TYPES.DONE &&
-                    <FontAwesomeIcon className="done-icon" icon={faCheckCircle}/>
-                }
-                <span>{removeUnderscore(column.name)} </span>
-                <span>{column.items.length}</span>
-            </div>
-
+            <StatusColumnHeader column={column}/>
             <Droppable droppableId={columnId} key={columnId}>
                 {(provided) => {
                     return (

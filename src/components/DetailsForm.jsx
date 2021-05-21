@@ -1,22 +1,21 @@
-import './CreateDialogForm.scss';
 import {Form, Formik} from "formik";
-import {FormikInput, FormikSelect, FormikTextarea} from "../../util/formControls";
-import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
 import * as Yup from "yup";
-import {addNewIssue} from "../../api/issueService";
-import {formValidation, storyPointValues} from "../../util/formUtil";
+import {FormikInput, FormikSelect, FormikTextarea} from "../util/formControls";
+import {ISSUE_TYPES, PRIORITY_LEVEL} from "../util/contants";
+import {formValidation, storyPointValues} from "../util/formUtil";
 
-export default function CreateDialogForm({addIssue}) {
+export default function DetailsForm({update, issue}) {
     const initialFormValues = {
-        title: "",
-        description: "",
-        issueType: ISSUE_TYPES.STORY,
-        issuePriority: PRIORITY_LEVEL.NORMAL,
-        storypoints: 1
-    };
+        id: "RFM-" + issue.id, //todo: project id should not be hardcoded
+        title: issue.title,
+        description: issue.description,
+        issueType: issue.type,
+        issuePriority: issue.priority,
+        storypoints: issue.storypoints
+    }
 
     const onFormSubmit = async (values, {resetForm}) => {
-        addIssue(await addNewIssue(values));
+        update(values);
         resetForm();
     }
 
@@ -27,6 +26,12 @@ export default function CreateDialogForm({addIssue}) {
             onSubmit={onFormSubmit}
         >
             <Form>
+                <FormikInput
+                    label="ID"
+                    name="id"
+                    type="text"
+                    disabled={true}
+                />
                 <FormikInput
                     label="Title"
                     name="title"
@@ -41,26 +46,26 @@ export default function CreateDialogForm({addIssue}) {
                 />
                 <div className="form-select-wrapper">
                     <FormikSelect label="Type" name="issueType" className="form-select">
-                        {Object.values(ISSUE_TYPES).map((type, idx) => (
+                        { Object.values(ISSUE_TYPES).map((type, idx) => (
                             <option value={type} key={idx}>
                                 {type.toLowerCase()}
                             </option>
                         ))}
                     </FormikSelect>
                     <FormikSelect label="Priority" name="issuePriority">
-                        {Object.values(PRIORITY_LEVEL).map((priority, idx) => (
+                        { Object.values(PRIORITY_LEVEL).map((priority, idx) => (
                             <option value={priority} key={idx}>
                                 {priority.toLowerCase()}
                             </option>
                         ))}
                     </FormikSelect>
                     <FormikSelect label="SP" name="storypoints">
-                        {storyPointValues.map((sp, idx) => (
+                        { storyPointValues.map((sp, idx) => (
                             <option value={sp} key={idx}>{sp}</option>
                         ))}
                     </FormikSelect>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Update Issue</button>
             </Form>
         </Formik>
     );

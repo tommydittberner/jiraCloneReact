@@ -1,0 +1,16 @@
+@import "src/variables";
+
+.status-column-header {
+  text-transform: uppercase;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: $small-font;
+  color: $jira-grey-text;
+
+  .done-icon {
+    padding-right: 4px;
+  }
+}

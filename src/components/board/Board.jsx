@@ -63,7 +63,7 @@ const insertIssuesIntoColumns = (issues) => {
 }
 
 export default function Board({issues}) {
-    const [columns, setColumns] = useState({});
+    const [columns, setColumns] = useState(insertIssuesIntoColumns(issues));
 
     useEffect(() => {
         setColumns(insertIssuesIntoColumns(issues));
@@ -71,14 +71,14 @@ export default function Board({issues}) {
 
     return (
         <>
-            <BoardHeader />
+            <BoardHeader/>
             <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
                 <div className="board">
-                    {Object.entries(columns).map(([columnId, column], index) => {
-                        return (
-                            <StatusColumn key={columnId} column={column} columnId={columnId}/>
-                        );
-                    })}
+                    {Object.entries(columns)
+                        .map(([columnId, column], idx) => (
+                            <StatusColumn key={idx} column={column} columnId={columnId}/>
+                        ))
+                    }
                 </div>
             </DragDropContext>
         </>
