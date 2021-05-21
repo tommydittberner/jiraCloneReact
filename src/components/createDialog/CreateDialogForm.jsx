@@ -75,22 +75,22 @@ export default function CreateDialogForm({submit}) {
                 />
                 <div className="form-select-wrapper">
                     <FormikSelect label="Type" name="issueType" className="form-select">
-                        { Object.values(ISSUE_TYPES).map(type => (
-                            <option value={type}>
+                        { Object.values(ISSUE_TYPES).map((type, idx) => (
+                            <option value={type} key={idx}>
                                 {type.toLowerCase()}
                             </option>
                         ))}
                     </FormikSelect>
                     <FormikSelect label="Priority" name="issuePriority">
-                        { Object.values(PRIORITY_LEVEL).map(priority => (
-                            <option value={priority}>
+                        { Object.values(PRIORITY_LEVEL).map((priority, idx) => (
+                            <option value={priority} key={idx}>
                                 {priority.toLowerCase()}
                             </option>
                         ))}
                     </FormikSelect>
                     <FormikSelect label="SP" name="storypoints">
-                        { storyPointValues.map(sp => (
-                            <option value={sp}>{sp}</option>
+                        { storyPointValues.map((sp, idx) => (
+                            <option value={sp} key={idx}>{sp}</option>
                         ))}
                     </FormikSelect>
                 </div>
