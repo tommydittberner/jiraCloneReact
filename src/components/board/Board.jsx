@@ -7,7 +7,6 @@ import BoardHeader from "./BoardHeader";
 import {doUpdateIssue} from "../../api/issueService";
 
 //todo: columns with their names and ids are hardcoded in this project (for now...).
-
 const getNewStatus = (destColumnId) => {
     switch (destColumnId) {
         case 2:

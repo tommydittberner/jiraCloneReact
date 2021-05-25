@@ -2,17 +2,27 @@ import './BoardHeader.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEllipsisH, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 export default function BoardHeader({issues}) {
-    const [matches, setMatches] = useState([])
+    const history = useHistory();
+    const [matches, setMatches] = useState([]);
+    const [query, setQuery] = useState("");
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log('testing...');
+        //we can navigate on submit if there is a single matching issue available
+        if(matches.length === 1){
+            history.push({
+                pathname: `issues/${matches[0].id}`,
+                state: matches[0],
+            });
+        }
     }
 
     const findMatches = (e) => {
         let searchTerm = e.target.value.toLowerCase();
+        setQuery(searchTerm);
 
         // return no results when search bar is empty
         if (searchTerm === '' || searchTerm === null || searchTerm === undefined){
@@ -40,7 +50,13 @@ export default function BoardHeader({issues}) {
         })
 
         //sort by score
-        matchingIssues.sort((a, b) => a[2] - b[2]);
+        matchingIssues.sort((a, b) => {
+            //same score -> sort asc by id
+            if (a[2] - b[2] === 0) {
+                return a[0] - b[0];
+            }
+            return a[2] - b[2];
+        });
 
         //get issues from list of ids
         const sortedMatches = [];
@@ -50,9 +66,25 @@ export default function BoardHeader({issues}) {
         setMatches(sortedMatches);
     }
 
-    const navigateToDetails = (id) => {
-        //todo: navigate...
-        console.log(id);
+    const navigateToDetails = (issue) => {
+        history.push({
+            pathname: `issues/${issue.id}`,
+            state: issue,
+        });
+    }
+
+    //this is buggy and probably redundant - but it was fun
+    function highlightMatchingText(id, title) {
+        let str = `${id} - ${title}`.toLowerCase();
+        let splitStr= str.split(query);
+        return(
+            <>
+                <span>{splitStr[0]}</span>
+                <span style={{fontWeight: 'bold'}}>{query}</span>
+                <span>{splitStr[1]}</span>
+            </>
+
+        )
     }
 
     return (
@@ -72,13 +104,13 @@ export default function BoardHeader({issues}) {
                 </button>
             </form>
             {Object.values(matches).map((issue, idx) => (
-                <p
-                    className="search-match"
+                <button
                     key={idx}
-                    onClick={() => navigateToDetails(issue.id)}
+                    className="search-match"
+                    onClick={() => navigateToDetails(issue)}
                 >
-                    RFM-{issue.id} - {issue.title}
-                </p>
+                    {highlightMatchingText(issue.id, issue.title)}
+                </button>
             ))}
         </>
 
