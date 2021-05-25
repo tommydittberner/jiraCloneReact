@@ -3,11 +3,12 @@
 A little project I did at work before the onboarding process was finished and I was moved into a regular team.
 
 ### What it can do
-- basic CRUD operations (it connects to a real DB running postgreSQL)
-- drag and drop between the stauts-columns
+- drag and drop between the status-columns will update the issue status
+- create popup accessible from the sidenav
+- details page for each issue (for editing an issue)
+- confirmation popup on delete
 
 ### Todo:
-- [ ] navigation to a details-page of each Issue
 - [ ] search for an issue by ID or by name (incl. autocompletion)
 - [ ] dark mode toggle via custom react-hook
 
