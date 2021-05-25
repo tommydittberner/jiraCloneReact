@@ -1,3 +1,4 @@
+import './DetailsForm.scss';
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import {FormikInput, FormikSelect, FormikTextarea} from "../util/formControls";
@@ -6,6 +7,8 @@ import {formValidation, storyPointValues} from "../util/formUtil";
 import {updateIssue} from "../api/issueService";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default function DetailsForm({update, issue}) {
     const initialFormValues = {
@@ -49,6 +52,14 @@ export default function DetailsForm({update, issue}) {
         });
     }
 
+    const onDeleteIssue = () => {
+        //todo:
+        // 1. popup confirm
+        // 2. delete issue
+        // 3. navigate back to (updated) board
+        console.log('deleting...');
+    }
+
     return (
         <Formik
             initialValues={initialFormValues}
@@ -57,12 +68,22 @@ export default function DetailsForm({update, issue}) {
         >
             {({isValid, touched}) => (
                 <Form>
-                    <FormikInput
-                        label="ID"
-                        name="id"
-                        type="text"
-                        disabled={true}
-                    />
+                    <div className="details-form-first-row">
+                        <div>
+                            <FormikInput
+                                label="ID"
+                                name="id"
+                                type="text"
+                                disabled={true}
+                            />
+                        </div>
+                        <FontAwesomeIcon
+                            className="issue-delete-btn"
+                            icon={faTrash}
+                            size={'lg'}
+                            onClick={onDeleteIssue}
+                        />
+                    </div>
                     <FormikInput
                         label="Title"
                         name="title"
