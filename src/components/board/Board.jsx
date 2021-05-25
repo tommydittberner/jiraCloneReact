@@ -4,8 +4,25 @@ import {STATUS_TYPES} from "../../util/contants";
 import {useState, useEffect} from 'react';
 import {DragDropContext} from "react-beautiful-dnd";
 import BoardHeader from "./BoardHeader";
+import {doUpdateIssue} from "../../api/issueService";
 
-const onDragEnd = (result, columns, setColumns) => {
+//todo: columns with their names and ids are hardcoded in this project (for now...).
+
+const getNewStatus = (destColumnId) => {
+    switch (destColumnId) {
+        case 2:
+            return STATUS_TYPES.IN_PROGRESS
+        case 3:
+            return STATUS_TYPES.PEER_REVIEW
+        case 4:
+            return STATUS_TYPES.DONE
+        case 1:
+        default:
+            return STATUS_TYPES.OPEN
+    }
+}
+
+const onDragEnd = async (result, columns, setColumns) => {
     if (!result.destination) return;
     const {source, destination} = result;
 
@@ -23,8 +40,15 @@ const onDragEnd = (result, columns, setColumns) => {
         const destColumn = columns[destId];
         const sourceItems = [...sourceColumn.items];
         const destItems = [...destColumn.items];
-        const [removed] = sourceItems.splice(source.index, 1);
-        destItems.push(removed);
+        let [movedIssue] = sourceItems.splice(source.index, 1);
+
+        // update status of issue
+        movedIssue = await doUpdateIssue(
+            movedIssue.id,
+            {"status": getNewStatus(destId)}
+        )
+
+        destItems.push(movedIssue);
         destItems.sort((a, b) => a.id - b.id)
 
         setColumns({
@@ -71,7 +95,7 @@ export default function Board({issues}) {
 
     return (
         <>
-            <BoardHeader/>
+            <BoardHeader issues={issues}/>
             <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
                 <div className="board">
                     {Object.entries(columns)
