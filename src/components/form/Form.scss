@@ -25,7 +25,6 @@ form {
       transform: scale(1.1);
       transition: 0.2s ease-in-out;
     }
-
   }
 
 
@@ -122,6 +121,22 @@ form {
 
       select {
         flex: 1;
+      }
+    }
+  }
+
+   //details form specific
+  .details-form-first-row {
+    display: flex;
+    align-items: center;
+
+    .issue-delete-btn {
+      margin-left: auto;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+        transition: 0.3s ease;
+        color: $jira-text-highlight;
       }
     }
   }

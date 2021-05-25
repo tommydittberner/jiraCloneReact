@@ -3,7 +3,7 @@ import Board from "./components/board/Board";
 import Sidenav from "./components/Sidenav";
 import MenuBar from "./components/MenuBar";
 import {useEffect, useState} from "react";
-import CreateDialog from "./components/createDialog/CreateDialog";
+import CreateDialog from "./components/dialog/CreateDialog";
 import {fetchIssues} from "./api/issueService";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import IssueDetails from "./components/issueDetails/IssueDetails";
@@ -44,7 +44,11 @@ function App() {
             <MenuBar openCreateDialog={openCreateDialog}/>
             <Sidenav openCreateDialog={openCreateDialog}/>
             <div className="main">
-                <CreateDialog open={createDialogOpen} closeDialog={closeCreateDialog} addIssue={addIssue} />
+                <CreateDialog
+                    open={createDialogOpen}
+                    closeDialog={closeCreateDialog}
+                    addIssue={addIssue}
+                />
                 <Switch>
                     <Route exact path="/">
                         {/* conditional for login goes here */}

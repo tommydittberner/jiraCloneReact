@@ -1,0 +1,75 @@
+@import 'src/variables';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.5);
+}
+
+.dialog-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+
+  .dialog {
+    position: relative;
+    height: fit-content;
+    margin: 1em 1em 1em $aside-width;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: $jira-box-shadow;
+  }
+
+  .create-dialog {
+    min-width: 800px;
+    width: 40vw;
+  }
+
+  .confirmation-dialog {
+    width: 460px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      cursor: pointer;
+      margin: 0.25em 0.5em;
+      padding: 0.5em 1em;
+      border-radius: 10px;
+    }
+  }
+}
+
+.dialog-hidden {
+  display: none;
+}
+
+
+.dialog-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .dialog-close-btn {
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      color: $jira-text-highlight;
+      transform: scale(1.1);
+      transition: 0.2s ease;
+    }
+  }
+
+  .dialog-title {
+    margin: 0;
+  }
+}

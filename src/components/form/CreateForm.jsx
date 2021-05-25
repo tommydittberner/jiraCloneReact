@@ -1,4 +1,4 @@
-import './CreateDialogForm.scss';
+import './Form.scss';
 import {Form, Formik} from "formik";
 import {FormikInput, FormikSelect, FormikTextarea} from "../../util/formControls";
 import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import {addNewIssue} from "../../api/issueService";
 import {formValidation, storyPointValues} from "../../util/formUtil";
 
-export default function CreateDialogForm({addIssue}) {
+export default function CreateForm({addIssue}) {
     const initialFormValues = {
         title: "",
         description: "",
