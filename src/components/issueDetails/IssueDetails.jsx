@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
 import { useState } from "react";
+import {doDeleteIssue} from "../../api/issueService";
 
 
 export default function IssueDetails({updateIssue, deleteIssue}) {
@@ -21,7 +22,8 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
     const closeConfirmationDialog = () => setConfirmOpen(false);
     const confirmDeletion = async () => {
         setConfirmOpen(false);
-        await deleteIssue(issue.id);
+        await doDeleteIssue(issue.id);
+        deleteIssue(issue.id);
         navigateToBoard();
     }
 
@@ -47,8 +49,7 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
                 <div className="form-wrapper">
                     <DetailsForm
                         openConfirmDialog={openConfirmationDialog}
-                        updateCallback={updateIssue}
-                        deleteCallback={deleteIssue}
+                        updateIssue={updateIssue}
                         issue={issue}
                     />
                 </div>

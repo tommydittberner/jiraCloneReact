@@ -1,30 +1,24 @@
 import './Dialog.scss'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faWindowClose} from "@fortawesome/free-solid-svg-icons";
+import ConfirmationDialogHeader from "./ConfirmationDialogHeader";
+import ConfirmationDialogActions from "./ConfirmationDialogActions";
 
 export default function ConfirmationDialog({issueId, open, closeDialog, confirmDeletion}) {
+    //this should be passed in to make it more reusable later on
+    const message = "This issue will be forever deleted and there is no chance to get it back later on.";
+
     return (
         <div className={open ? "overlay" : "dialog-hidden"}>
           <div className="dialog-wrapper">
               <div className={open ? `dialog confirmation-dialog` : "dialog-hidden"}>
-                  <div className="dialog-header-row">
-                      <h1 className="dialog-title">Delete issue RFM-{issueId}?</h1>
-                      <FontAwesomeIcon
-                          className="dialog-close-btn"
-                          onClick={closeDialog}
-                          icon={faWindowClose}
-                          size="2x"
-                      />
-                  </div>
-                  <p>This issue will be forever deleted and there is no chance to get it back later on.</p>
-                  <div className="dialog-actions">
-                      <button onClick={closeDialog}>
-                          Cancel
-                      </button>
-                      <button onClick={confirmDeletion}>
-                          Yes, I'm sure
-                      </button>
-                  </div>
+                  <ConfirmationDialogHeader
+                      issueId={issueId}
+                      closeDialog={closeDialog}
+                  />
+                  <p>{message}</p>
+                  <ConfirmationDialogActions
+                      closeDialog={closeDialog}
+                      confirmDeletion={confirmDeletion}
+                  />
               </div>
           </div>
       </div>

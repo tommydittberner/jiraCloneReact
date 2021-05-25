@@ -4,13 +4,13 @@ import * as Yup from "yup";
 import {FormikInput, FormikSelect, FormikTextarea} from "../../util/formControls";
 import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
 import {formValidation, storyPointValues} from "../../util/formUtil";
-import {updateIssue} from "../../api/issueService";
+import {doUpdateIssue} from "../../api/issueService";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-export default function DetailsForm({openConfirmDialog, updateCallback, issue}) {
+export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
 
     const initialFormValues = {
         id: "RFM-" + issue.id, //todo: project id should not be hardcoded
@@ -40,8 +40,8 @@ export default function DetailsForm({openConfirmDialog, updateCallback, issue}) 
             updatedValues["storypoints"] = values.storypoints;
         }
 
-        let updatedIssue = await updateIssue(issue.id, updatedValues);
-        updateCallback(updatedIssue);
+        updateIssue(await doUpdateIssue(issue.id, updatedValues));
+
         toast('Update successful!', {
             position: "top-right",
             autoClose: 3000,

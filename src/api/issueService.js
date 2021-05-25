@@ -29,7 +29,7 @@ export const addNewIssue = async (issue) => {
     }).then(res => res.json());
 }
 
-export const updateIssue = async (id, values) => {
+export const doUpdateIssue = async (id, values) => {
     let requestParams = "";
     Object.entries(values).map(([k, v], idx) => {
         return idx === 0 ?
@@ -44,9 +44,9 @@ export const updateIssue = async (id, values) => {
     }).then(res => res.json());
 }
 
-export const deleteIssue = async (id) => {
+export const doDeleteIssue = async (id) => {
     return await fetch(`${uriBase}/${id}`, {
         method: 'DELETE',
         headers: headers
-    })
+    }) //void response
 }
