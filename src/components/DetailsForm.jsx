@@ -4,13 +4,16 @@ import * as Yup from "yup";
 import {FormikInput, FormikSelect, FormikTextarea} from "../util/formControls";
 import {ISSUE_TYPES, PRIORITY_LEVEL} from "../util/contants";
 import {formValidation, storyPointValues} from "../util/formUtil";
-import {updateIssue} from "../api/issueService";
+import {deleteIssue, updateIssue} from "../api/issueService";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {useHistory} from "react-router-dom";
 
-export default function DetailsForm({update, issue}) {
+export default function DetailsForm({updateCallback, deleteCallback, issue}) {
+    const history = useHistory();
+
     const initialFormValues = {
         id: "RFM-" + issue.id, //todo: project id should not be hardcoded
         title: issue.title,
@@ -40,7 +43,7 @@ export default function DetailsForm({update, issue}) {
         }
 
         let updatedIssue = await updateIssue(issue.id, updatedValues);
-        update(updatedIssue);
+        updateCallback(updatedIssue);
         toast('Update successful!', {
             position: "top-right",
             autoClose: 3000,
@@ -52,12 +55,15 @@ export default function DetailsForm({update, issue}) {
         });
     }
 
-    const onDeleteIssue = () => {
-        //todo:
-        // 1. popup confirm
-        // 2. delete issue
-        // 3. navigate back to (updated) board
-        console.log('deleting...');
+    const navigateToBoard = () => {
+        history.replace('/board');
+    }
+
+    const onDeleteIssue = async () => {
+        //todo: popup confirm
+        await deleteIssue(issue.id);
+        deleteCallback(issue.id);
+        navigateToBoard();
     }
 
     return (

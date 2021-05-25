@@ -1,22 +1,23 @@
 import {STATUS_TYPES} from "../util/contants";
 
+
+const uriBase = 'http://localhost:8080/api/issue';
+const headers = {
+    'Accept': 'application/json',
+    'Content-type': 'application/json'
+};
+
 export const fetchIssues = async () => {
-    return await fetch('http://localhost:8080/api/issue', {
+    return await fetch(uriBase, {
         method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
-        },
-    }).then(res => res.json())
+        headers: headers,
+    }).then(res => res.json());
 }
 
 export const addNewIssue = async (issue) => {
-    return await fetch('http://localhost:8080/api/issue', {
+    return await fetch(uriBase, {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
-        },
+        headers: headers,
         body: JSON.stringify({
             "title": issue.title,
             "description" : issue.description,
@@ -25,7 +26,7 @@ export const addNewIssue = async (issue) => {
             "priority": issue.issuePriority,
             "storypoints": issue.storypoints,
         })
-    }).then(res => res.json())
+    }).then(res => res.json());
 }
 
 export const updateIssue = async (id, values) => {
@@ -36,12 +37,16 @@ export const updateIssue = async (id, values) => {
             requestParams += "&" + k + "=" + v;
     });
 
-    let url = `http://localhost:8080/api/issue/${id}${requestParams}`;
+    let url = `${uriBase}/${id}${requestParams}`;
     return await fetch(url, {
         method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json'
-        },
-    }).then(res => res.json())
+        headers: headers,
+    }).then(res => res.json());
+}
+
+export const deleteIssue = async (id) => {
+    return await fetch(`${uriBase}/${id}`, {
+        method: 'DELETE',
+        headers: headers
+    })
 }

@@ -22,7 +22,12 @@ function App() {
     const updateIssue = (updatedIssue) => {
         let copy = [...issues.filter(i => i.id !== updatedIssue.id)];
         //no specific order needed since it gets ordered in the column
-        setIssues([...copy, updatedIssue])
+        setIssues([...copy, updatedIssue]);
+    }
+
+    const deleteIssue = (deletedId) => {
+        let issuesWithoutDeleted = [...issues.filter(i => i.id !== deletedId)];
+        setIssues([...issuesWithoutDeleted]);
     }
 
     //get issues once initially (and on reload)
@@ -46,7 +51,10 @@ function App() {
                         <Redirect to="/board" />
                     </Route>
                     <Route exact path="/issues/:issueId">
-                        <IssueDetails update={updateIssue} />
+                        <IssueDetails
+                            updateIssue={updateIssue}
+                            deleteIssue={deleteIssue}
+                        />
                     </Route>
                     <Route exact path="/board">
                         <Board issues={issues} />

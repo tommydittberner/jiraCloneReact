@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 
-export default function IssueDetails({update}) {
+export default function IssueDetails({updateIssue, deleteIssue}) {
     let history = useHistory();
     const issue = history.location.state;
 
@@ -23,7 +23,11 @@ export default function IssueDetails({update}) {
             </div>
             <div className="details-wrapper">
                 <div className="form-wrapper">
-                    <DetailsForm update={update} issue={issue} />
+                    <DetailsForm
+                        updateCallback={updateIssue}
+                        deleteCallback={deleteIssue}
+                        issue={issue}
+                    />
                 </div>
             </div>
         </>
