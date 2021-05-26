@@ -355,3 +355,19 @@ export const StyledStatusColumnHeader = styled.div`
     font-size: 0.8em;
     color: ${({theme}) => theme.greyText};
 `;
+
+export const IssueIcon = styled.label`
+    color: ${({theme}) => props => {
+        switch (props.iconColor) {
+            case "red":
+                return theme.issueRed;
+            case "blue":
+                return theme.issueBlue;
+            case "yellow":
+                return theme.issueYellow;
+            case "green":
+            default:
+                return theme.issueGreen;
+        }
+    }};
+`;

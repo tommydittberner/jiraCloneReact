@@ -1,11 +1,14 @@
 import {ISSUE_TYPES, PRIORITY_LEVEL} from "./contants";
 import {
-    faAngleDoubleDown, faBan,
+    faAngleDoubleDown,
+    faBan,
     faBookmark,
     faBug,
     faCaretSquareUp,
     faCheckSquare,
-    faCircle, faLongArrowAltDown, faLongArrowAltUp
+    faCircle,
+    faLongArrowAltDown,
+    faLongArrowAltUp
 } from "@fortawesome/free-solid-svg-icons";
 
 export const removeUnderscore = (input) => {
@@ -38,7 +41,7 @@ export const getTypeColor = (type) => {
         case ISSUE_TYPES.STORY:
             return "green";
         case ISSUE_TYPES.IMPROVEMENT:
-            return "orange";
+            return "yellow";
         default:
             return "blue";
     }
@@ -64,9 +67,9 @@ export const getPriorityIcon = (priority) => {
 export const getPriorityColor = (priority) => {
     switch (priority) {
         case PRIORITY_LEVEL.TRIVIAL:
-            return "green";
+            return "yellow";
         case PRIORITY_LEVEL.LOW:
-            return "orange";
+            return "yellow";
         case PRIORITY_LEVEL.NORMAL:
             return "blue";
         case PRIORITY_LEVEL.HIGH:

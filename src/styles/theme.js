@@ -15,6 +15,10 @@ export const lightTheme = {
     disabled: "lightgrey",
     error: "#aa5555",
     overlayColor: "rgba(20, 20, 20, 0.5)",
+    issueBlue: "blue",
+    issueRed: "red",
+    issueGreen: "green",
+    issueYellow: "orange",
 }
 
 export const darkTheme = {
@@ -34,4 +38,8 @@ export const darkTheme = {
     disabled: "darkgrey",
     error: "#ff8888",
     overlayColor: "rgba(20, 20, 20, 0.5)",
+    issueBlue: "deepskyblue",
+    issueRed: "lightcoral",
+    issueGreen: "lightgreen",
+    issueYellow: "orange",
 }

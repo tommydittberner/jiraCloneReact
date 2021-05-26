@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {getPriorityColor, getPriorityIcon, getTypeColor, getTypeIcon} from "../../util/util"
 import ReactTooltip from "react-tooltip";
 import {useHistory} from "react-router-dom";
-import {Card, IDTag, TextLabel} from "../../styles/styles";
+import {Card, IDTag, IssueIcon, TextLabel} from "../../styles/styles";
 
 export default function Issue({issue}) {
     const history = useHistory();
@@ -21,18 +21,20 @@ export default function Issue({issue}) {
                 <span>{issue.title}</span>
             </header>
             <div className="issue-info">
-                <FontAwesomeIcon
-                    style={{margin: "2px 4px"}}
-                    color={getTypeColor(issue.type)}
-                    icon={getTypeIcon(issue.type)}
-                    data-tip={issue.type}
-                />
-                <FontAwesomeIcon
-                    style={{margin: "2px 4px"}}
-                    color={getPriorityColor(issue.priority)}
-                    icon={getPriorityIcon(issue.priority)}
-                    data-tip={issue.priority}
-                />
+                <IssueIcon iconColor={getTypeColor(issue.type)}>
+                    <FontAwesomeIcon
+                        style={{margin: "2px 4px"}}
+                        icon={getTypeIcon(issue.type)}
+                        data-tip={issue.type}
+                    />
+                </IssueIcon>
+                <IssueIcon iconColor={getPriorityColor(issue.priority)}>
+                    <FontAwesomeIcon
+                        style={{margin: "2px 4px"}}
+                        icon={getPriorityIcon(issue.priority)}
+                        data-tip={issue.priority}
+                    />
+                </IssueIcon>
                 <TextLabel>{issue.storypoints}</TextLabel>
                 <IDTag style={{marginLeft: "auto"}}>RFM-{issue.id}</IDTag>
             </div>
