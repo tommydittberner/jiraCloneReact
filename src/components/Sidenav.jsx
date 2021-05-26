@@ -13,57 +13,58 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {faReact} from "@fortawesome/free-brands-svg-icons";
 import {Link} from "react-router-dom";
+import {Header, JiraSidenav, List, ListItemTextAndIcon} from "../styles/styles";
 
 export default function Sidenav({openCreateDialog}) {
     return (
-        <div className="sidenav">
-            <div className="sidenav-header">
+        <JiraSidenav>
+            <Header>
                 <FontAwesomeIcon icon={faReact} size="3x"/>
-                <div className="sidenav-titles">
-                    <span className="project-title">ITF Refinement</span>
-                    <span className="project-subtitle">Done with React</span>
-                </div>
-            </div>
-            <ul className="sidenav-items">
-                <li className="menu-disabled">
+                <section style={{paddingLeft: "8px"}}>
+                    <span style={{display: "block", fontWeight: "bold"}}>ITF Refinement</span>
+                    <span style={{display: "block"}}>Done with React</span>
+                </section>
+            </Header>
+            <List>
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faStream}/>
                     <span>Backlog</span>
-                </li>
+                </ListItemTextAndIcon>
                 <Link to="/board" style={{textDecoration: "none"}}>
-                    <li>
+                    <ListItemTextAndIcon>
                         <FontAwesomeIcon icon={faColumns}/>
                         <span>Board</span>
-                    </li>
+                    </ListItemTextAndIcon>
                 </Link>
-                <li className="menu-disabled">
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faChartLine}/>
                     <span>Reports</span>
-                </li>
-                <li className="menu-disabled">
+                </ListItemTextAndIcon>
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faShippingFast}/>
                     <span>Releases</span>
-                </li>
-                <li className="menu-disabled">
+                </ListItemTextAndIcon>
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faClone}/>
                     <span>Components</span>
-                </li>
-                <li className="menu-disabled">
+                </ListItemTextAndIcon>
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faTasks}/>
                     <span>Issues</span>
-                </li>
-                <li className="menu-disabled">
+                </ListItemTextAndIcon>
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faDatabase}/>
                     <span>Repository</span>
-                </li>
-                <li onClick={openCreateDialog}>
+                </ListItemTextAndIcon>
+                <ListItemTextAndIcon onClick={openCreateDialog}>
                     <FontAwesomeIcon icon={faPlusSquare}/>
                     <span>Add Item</span>
-                </li>
-                <li className="menu-disabled">
+                </ListItemTextAndIcon>
+                <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faCog}/>
                     <span>Settings</span>
-                </li>
-            </ul>
-        </div>
+                </ListItemTextAndIcon>
+            </List>
+        </JiraSidenav>
     );
 }

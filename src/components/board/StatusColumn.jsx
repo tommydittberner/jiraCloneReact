@@ -1,19 +1,18 @@
-import './StatusColumn.scss';
 import Issue from "./Issue";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import StatusColumnHeader from "./StatusColumnHeader";
+import {DroppableContainer, StyledStatusColumn} from "../../styles/styles";
 
 export default function StatusColumn({column, columnId}) {
     return (
-        <div className="status-column">
+        <StyledStatusColumn>
             <StatusColumnHeader column={column}/>
             <Droppable droppableId={columnId} key={columnId}>
                 {(provided) => {
                     return (
-                        <div
+                        <DroppableContainer
                             {...provided.droppableProps}
                             ref={provided.innerRef}
-                            className="droppable-container"
                         >
                             {column.items.map((issue, index) => {
                                 return (
@@ -33,10 +32,10 @@ export default function StatusColumn({column, columnId}) {
                                 );
                             })}
                             {provided.placeholder}
-                        </div>
+                        </DroppableContainer>
                     );
                 }}
             </Droppable>
-        </div>
+        </StyledStatusColumn>
     );
 }

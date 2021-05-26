@@ -27,6 +27,8 @@ export const getTypeIcon = (type) => {
     }
 }
 
+
+//todo: light and dark theme option
 export const getTypeColor = (type) => {
     switch (type) {
         case ISSUE_TYPES.BUG:

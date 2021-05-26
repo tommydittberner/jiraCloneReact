@@ -1,59 +1,16 @@
-@import 'src/variables';
+.sidenav-title {
+  padding-left: 8px;
 
-.sidenav {
-  position: fixed;
-  top: 0;
-  left: $aside-width;
-  height: 100vh;
-  background-color: $jira-bg;
-  width: $sidenav-width;
-  border-right: 1px solid rgb(200, 200, 200);
-
-  .sidenav-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 2em 1em;
-
-    .sidenav-titles {
-      padding-left: 8px;
-
-      .project-title {
-        font-weight: bold;
-        display: block;
-      }
-
-      .project-subtitle {
-        display: block;
-      }
-    }
+  .project-title {
+    font-weight: bold;
+    display: block;
   }
 
-
-  .sidenav-items {
-    list-style: none;
-    padding: 0 1em;
-
-    li {
-      padding: 0.75em;
-      border-radius: 4px;
-
-      &:hover {
-        background-color: $jira-hover;
-        color: $jira-text-highlight;
-      }
-
-      &:nth-child(2) {
-        color: $jira-text-highlight;
-      }
-
-      span {
-        padding-left: 1em;
-      }
-    }
-
-    .menu-disabled {
-      color: lightgray;
-    }
+  .project-subtitle {
+    display: block;
   }
+}
+
+.menu-disabled {
+  color: lightgray;
 }
