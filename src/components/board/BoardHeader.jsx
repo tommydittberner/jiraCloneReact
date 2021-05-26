@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEllipsisH, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
-import {FAIconButton, TextButton} from "../../styles/styles";
+import {FAIconButton, SearchBar, SearchButton, SearchMatch, TextButton} from "../../styles/styles";
 
 export default function BoardHeader({issues}) {
     const history = useHistory();
@@ -92,28 +92,24 @@ export default function BoardHeader({issues}) {
         <>
             <section className="board-header">
                 <h1>Board</h1>
-                <TextButton className="board-release-btn">release</TextButton>
+                <TextButton style={{marginLeft: "auto"}}>release</TextButton>
                 <FAIconButton>
                     <FontAwesomeIcon icon={faEllipsisH}/>
                 </FAIconButton>
             </section>
-            <form className="search-form" onSubmit={onSubmit}>
-                <input className="search-bar"
-                       placeholder="Search"
-                       onChange={findMatches}
-                />
-                <button className="search-btn" type="submit" onClick={onSubmit}>
+            <form style={{display: "inline"}} onSubmit={onSubmit}>
+                <SearchBar placeholder="Search" onChange={findMatches}/>
+                <SearchButton type="submit" onClick={onSubmit}>
                     <FontAwesomeIcon icon={faSearch} />
-                </button>
+                </SearchButton>
             </form>
             {Object.values(matches).map((issue, idx) => (
-                <button
+                <SearchMatch
                     key={idx}
-                    className="search-match"
                     onClick={() => navigateToDetails(issue)}
                 >
                     {highlightMatchingText(issue.id, issue.title)}
-                </button>
+                </SearchMatch>
             ))}
         </>
 

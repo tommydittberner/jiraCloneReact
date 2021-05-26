@@ -11,6 +11,7 @@ export const TextButton = styled.button`
 
 export const DialogActionButton = styled(TextButton)`
     margin: 0.25em 0.5em;
+    color: ${({theme}) => theme.text};
     
     &:hover {
         border: 2px solid ${({theme}) => theme.textHighlight};
@@ -21,6 +22,7 @@ export const SubmitButton = styled(TextButton)`
     width: fit-content;
     font-weight: bold;
     border: 2px solid;
+    color: ${({theme}) => theme.text};
     border-color: ${({theme}) => theme.textHighlight};
     background-color: ${({theme}) => theme.background};
     
@@ -58,7 +60,7 @@ export const FAIconButtonMenu = styled(FAIconButton)`
 
 export const JiraMenu = styled.aside`
     width: 64px;
-    background-color: rgb(7, 71, 166);
+    background-color: ${({theme}) => theme.sideMenu};
     height: 100vh;
     position: fixed;
     top: 0;
@@ -280,4 +282,76 @@ export const DialogWrapper = styled.div`
 
 export const H1NoMargin = styled.h1`
     margin: 0;
+`;
+
+export const SearchBar = styled.input`
+    width: 240px;
+    padding: 0.5em;
+    border-radius: 8px;
+    margin-left: 24px;
+    color: ${({theme}) => theme.text};
+    border: 2px solid ${({theme}) => theme.background};
+    appearance: none;
+    background-color: ${({theme}) => theme.background};
+    font-weight: bold;
+    
+    &:hover {
+        background-color: ${({theme}) => theme.hover};
+    }
+    
+    &:focus {
+        outline: none;
+        border: 2px solid ${({theme}) => theme.textHighlight};
+        border-radius: 10px;
+    }
+`;
+
+export const SearchButton = styled.button`
+    background-color: transparent;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    color: ${({theme}) => theme.text};
+    
+    &:hover {
+        background-color: transparent;
+        color: ${({theme}) => theme.textHighlight};
+    }
+`;
+
+export const SearchMatch = styled.button`
+    display: block;
+    cursor: pointer;
+    color: ${({theme}) => theme.text};
+    border: 2px solid ${({theme}) => theme.background};
+    text-align: left;
+    background-color: ${({theme}) => theme.background};
+    margin: 8px 0 0 24px;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    width: 400px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    
+    &:hover {
+        background-color: ${({theme}) => theme.hover};
+    }
+    
+    &:focus {
+        outline: none;
+        border: 2px solid ${({theme}) => theme.textHighlight};
+        border-radius: 10px;
+    }
+`;
+
+export const StyledStatusColumnHeader = styled.div`
+    text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: ${({theme}) => theme.greyText};
 `;

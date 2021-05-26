@@ -20,13 +20,13 @@ export const lightTheme = {
 export const darkTheme = {
     body: "rgb(80, 80, 80)",
     background: "rgb(90, 90, 90)",
-    hover: "rgb(235, 236, 0)",
-    label: "rgb(235, 236, 0)",
+    hover: "rgb(135, 134, 140)",
+    label: "rgb(135, 134, 140)",
     text: "rgb(255, 255, 255)",
     greyText: "rgb(194, 208, 232)",
-    textHighlight: "rgb(0, 82, 0)",
-    sideMenu: "rgb(7, 71, 0)",
-    buttonBackground: "rgb(235, 236, 0)",
+    textHighlight: "rgb(100, 182, 255)",
+    sideMenu: "rgb(7, 71, 166)",
+    buttonBackground: "rgb(135, 136, 140)",
     boxShadow: "0 1px 2px 0 rgba(9, 30, 66, 0.83)",
     boxShadowSoft: "1px 1px 6px 2px rgba(9, 30, 66, 0.53)",
     iconColor: "rgb(255, 255, 255)",
@@ -35,15 +35,3 @@ export const darkTheme = {
     error: "#ff8888",
     overlayColor: "rgba(20, 20, 20, 0.5)",
 }
-
-// $sidenav-width: 240px;
-// $aside-width: 64px;
-// $padding-left-plus-16: 320px;
-// $jira-bg: rgb(244, 245, 247);
-// $jira-bg-blue: rgb(7, 71, 166);
-// $jira-hover: rgb(235, 236, 240);
-// $jira-grey-text: rgb(94, 108, 132);
-// $jira-text-highlight: rgb(0, 82, 204);
-// $jira-box-shadow: 0 1px 2px 0 rgba(9, 30, 66, 0.33);
-// $jira-box-shadow-soft: 1px 1px 6px 2px rgba(9, 30, 66, 0.13);
-// $small-font: 0.8em;
