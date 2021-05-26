@@ -1,31 +1,38 @@
 import styled from "styled-components";
 
-
 export const TextButton = styled.button`
     padding: 0.5em 1em;
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.buttonBackground};
-    border: none;
+    background-color: ${({theme}) => theme.buttonBackground};
+    border: 2px solid ${({theme}) => theme.buttonBackground};
     cursor: pointer;
     text-transform: capitalize;
+`;
+
+export const DialogActionButton = styled(TextButton)`
+    margin: 0.25em 0.5em;
+    
+    &:hover {
+        border: 2px solid ${({theme}) => theme.textHighlight};
+    }
 `;
 
 export const SubmitButton = styled(TextButton)`
     width: fit-content;
     font-weight: bold;
     border: 2px solid;
-    border-color: ${({ theme }) => theme.textHighlight};
-    background-color: ${({ theme }) => theme.background};
+    border-color: ${({theme}) => theme.textHighlight};
+    background-color: ${({theme}) => theme.background};
     
     &:hover {
-        background-color: ${({ theme }) => theme.hover};
+        background-color: ${({theme}) => theme.hover};
         transform: scale(1.1);
         transition: all 0.2s ease-in-out;
     }
     
     &:disabled {
-      border-color: ${({ theme }) => theme.background};
-      background-color: ${({ theme }) => theme.body};
+      border-color: ${({theme}) => theme.background};
+      background-color: ${({theme}) => theme.body};
     }
 `;
 
@@ -33,13 +40,13 @@ export const FAIconButton = styled.button`
     background-color: transparent;
     border: none;
     cursor: pointer;
-    color: ${({ theme }) => theme.iconColor};
+    color: ${({theme}) => theme.iconColor};
     padding: 1em;
 `;
 
 export const FAActionIconButton = styled(FAIconButton)`
      &:hover {
-        color: ${({ theme }) => theme.textHighlight};
+        color: ${({theme}) => theme.textHighlight};
         transform: scale(1.1);
     }
 `;
@@ -50,31 +57,31 @@ export const FAIconButtonMenu = styled(FAIconButton)`
 `;
 
 export const JiraMenu = styled.aside`
-  width: 64px;
-  background-color: rgb(7, 71, 166);
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  z-index: 1;
+    width: 64px;
+    background-color: rgb(7, 71, 166);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    z-index: 1;
 `;
 
 export const Header = styled.section`
-  margin: 24px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const JiraSidenav = styled.nav`
-  position: fixed;
-  top: 0;
-  left: 64px;
-  height: 100vh;
-  width: 240px;
-  background-color: ${({ theme }) => theme.background};
-  border-right: 1px solid ${({ theme }) => theme.borderColor};
+    position: fixed;
+    top: 0;
+    left: 64px;
+    height: 100vh;
+    width: 240px;
+    background-color: ${({theme}) => theme.background};
+    border-right: 1px solid ${({theme}) => theme.borderColor};
 `;
 
 export const List = styled.ul`
@@ -88,43 +95,43 @@ export const ListItemTextAndIcon = styled.li`
     border-radius: 4px;
 
     &:hover {
-      background-color: ${({ theme }) => theme.hover};
-      color: ${({ theme }) => theme.textHighlight};
+        background-color: ${({theme}) => theme.hover};
+        color: ${({theme}) => theme.textHighlight};
     }
     
     span {
-       padding-left: 1em;
-     }
+        padding-left: 1em;
+    }
 `;
 
 export const Card = styled.div`
     margin: 6px 0;
     padding: 12px;
-    background-color: ${({ theme }) => theme.body};
+    background-color: ${({theme}) => theme.body};
     border-radius: 4px;
-    box-shadow: ${({ theme }) => theme.boxShadow};
+    box-shadow: ${({theme}) => theme.boxShadow};
     cursor: pointer;
     font-size: 0.8em;
 
     &:hover {
-        background-color:  ${({ theme }) => theme.hover};
+        background-color:  ${({theme}) => theme.hover};
     }
 `;
 
 export const TextLabel = styled.label`
-    background-color: ${({ theme }) => theme.label};
+    background-color: ${({theme}) => theme.label};
     margin-left: 4px;
     padding: 0 0.5em;
     border-radius: 6px;
 `;
 
 export const IDTag = styled.label`
-    color: ${({ theme }) => theme.greyText};
+    color: ${({theme}) => theme.greyText};
     text-transform: uppercase;
 `;
 
 export const StyledStatusColumn = styled.div`
-    background-color: ${({ theme }) => theme.background};
+    background-color: ${({theme}) => theme.background};
     flex: 1;
     min-width: 200px;
     margin: 16px 8px;
@@ -132,7 +139,7 @@ export const StyledStatusColumn = styled.div`
     border-radius: 4px;
     min-height: 100%;
     height: fit-content;
-    box-shadow: ${({ theme }) => theme.boxShadowSoft};
+    box-shadow: ${({theme}) => theme.boxShadowSoft};
 `;
 
 export const DroppableContainer = styled.div`
@@ -145,6 +152,132 @@ export const BackNavLink = styled.section`
     font-weight: bold;
     
     span {
-        color: ${({ theme }) => theme.text};
+        color: ${({theme}) => theme.text};
     }
+`;
+
+export const FormLabel = styled.label`
+    font-weight: bold;
+    display: flex;
+    padding: 4px;
+`;
+
+export const FormInput = styled.input`
+    padding: 12px 8px;
+    appearance: none;
+    font-size: 1rem;
+    border: 2px solid ${({theme}) => theme.hover};
+    color: ${({theme}) => theme.greyText};
+    border-radius: 8px;
+    background-color: ${({theme}) => theme.background};
+    
+    &:focus {
+        outline: none;
+        border: 2px solid ${({theme}) => theme.textHighlight};
+    }
+    
+    &:disabled {
+        font-weight: bold;
+        background-color: ${({theme}) => theme.hover};
+        text-align: center;
+        width: 100px;
+    }
+`;
+
+export const FormTextfield = styled.textarea`
+    padding: 12px 8px;
+    appearance: none;
+    font-size: 1rem;
+    border: 2px solid ${({theme}) => theme.hover};
+    color: ${({theme}) => theme.greyText};
+    border-radius: 8px;
+    background-color: ${({theme}) => theme.background};
+    resize: vertical;
+    max-height: 420px;
+    min-height: 200px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
+    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+    sans-serif;
+    
+    &:focus {
+        outline: none;
+        border: 2px solid ${({theme}) => theme.textHighlight};
+    }
+`;
+
+export const FormSelect = styled.select`
+    border: 2px solid ${({theme}) => theme.hover};
+    color: ${({theme}) => theme.greyText};
+    border-radius: 8px;
+    background-color: ${({theme}) => theme.background};
+    padding: 10px 8px;
+    font: inherit;
+    appearance: revert;
+    text-transform: capitalize;
+    
+    &:focus {
+        outline: none;
+        border: 2px solid ${({theme}) => theme.textHighlight};
+    }
+`;
+
+export const ErrorLabel = styled.label`
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: ${({theme}) => theme.error};
+    width: 420px;
+    margin-top: 0.25rem;
+    
+    &:before {
+      content: "❌ ";
+      font-size: 10px;
+    }
+`;
+
+export const Overlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: ${({theme}) => theme.overlayColor};
+`;
+
+export const Dialog = styled.div`
+    position: relative;
+    height: fit-content;
+    margin: 1em 1em 1em 64px;
+    padding: 24px;
+    background-color: ${({theme}) => theme.body};
+    border-radius: 16px;
+    box-shadow: ${({theme}) => theme.boxShadow};
+`;
+
+export const StyledCreateDialog = styled(Dialog)`
+    min-width: 800px;
+    width: 40vw;
+`;
+
+export const StyledConfirmationDialog = styled(Dialog)`
+    width: 460px;
+`;
+
+export const DialogHeader = styled(Header)`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 16px 0;
+`;
+
+export const DialogWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+`;
+
+export const H1NoMargin = styled.h1`
+    margin: 0;
 `;

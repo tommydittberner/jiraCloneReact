@@ -12,6 +12,9 @@ export const lightTheme = {
     boxShadowSoft: "1px 1px 6px 2px rgba(9, 30, 66, 0.13)",
     iconColor: "rgb(0,0,0)",
     borderColor: "rgb(200, 200, 200)",
+    disabled: "lightgrey",
+    error: "#aa5555",
+    overlayColor: "rgba(20, 20, 20, 0.5)",
 }
 
 export const darkTheme = {
@@ -28,6 +31,9 @@ export const darkTheme = {
     boxShadowSoft: "1px 1px 6px 2px rgba(9, 30, 66, 0.53)",
     iconColor: "rgb(255, 255, 255)",
     borderColor: "rgb(100, 100, 100)",
+    disabled: "darkgrey",
+    error: "#ff8888",
+    overlayColor: "rgba(20, 20, 20, 0.5)",
 }
 
 // $sidenav-width: 240px;

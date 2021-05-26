@@ -1,13 +1,14 @@
 import {useField} from "formik";
+import {ErrorLabel, FormInput, FormLabel, FormSelect, FormTextfield} from "../styles/styles";
 
 export const FormikInput = ({label, ...props}) => {
     const [field, meta] = useField(props);
     return (
         <>
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <input {...field} {...props} />
+            <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
+            <FormInput {...field} {...props} />
             {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
+                <ErrorLabel>{meta.error}</ErrorLabel>
             ) : null}
         </>
     );
@@ -18,10 +19,10 @@ export const FormikTextarea = ({label, ...props}) => {
     const [field, meta] = useField(props);
     return (
         <>
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <textarea {...field} {...props} />
+            <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
+            <FormTextfield {...field} {...props} />
             {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
+                <ErrorLabel>{meta.error}</ErrorLabel>
             ) : null}
         </>
     );
@@ -31,11 +32,11 @@ export const FormikSelect = ({label, ...props}) => {
     const [field, meta] = useField(props);
     return (
         //this has to be a div for use with "display: flex;"
-        <div className="formik-select">
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <select {...field} {...props} />
+        <div className="select-grouping">
+            <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
+            <FormSelect {...field} {...props} />
             {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
+                <ErrorLabel>{meta.error}</ErrorLabel>
             ) : null}
         </div>
     );

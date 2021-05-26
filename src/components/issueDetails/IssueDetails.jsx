@@ -4,10 +4,9 @@ import DetailsForm from "../form/DetailsForm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
-import { useState } from "react";
+import {useState} from "react";
 import {doDeleteIssue} from "../../api/issueService";
-import {BackNavLink, FAActionIconButton, FAIconButton} from "../../styles/styles";
-
+import {BackNavLink, FAIconButton} from "../../styles/styles";
 
 export default function IssueDetails({updateIssue, deleteIssue}) {
     let history = useHistory();
@@ -49,7 +48,7 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
             </BackNavLink>
             <div className="details-wrapper">
                 <div className="form-wrapper">
-                    <DetgitailsForm
+                    <DetailsForm
                         openConfirmDialog={openConfirmationDialog}
                         updateIssue={updateIssue}
                         issue={issue}

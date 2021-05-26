@@ -1,83 +1,12 @@
-@import "src/variables";
-
 form {
   display: flex;
   flex-direction: column;
-
-  label {
-    font-weight: bold;
-    display: flex;
-    padding: 4px;
-  }
-
-  input,
-  select,
-  textarea {
-    padding: 12px 8px;
-    appearance: none;
-    font-size: 1rem;
-    border: 2px solid $jira-hover;
-    color: $jira-grey-text;
-    border-radius: 8px;
-    background-color: $jira-bg;
-  }
-
-  select {
-    padding: 10px 8px;
-    font: inherit;
-    appearance: revert;
-    text-transform: capitalize;
-  }
-
-  textarea {
-    resize: vertical;
-    max-height: 420px;
-    min-height: 200px;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir,
-    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
-    sans-serif;
-  }
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    outline: none;
-    border: 2px solid $jira-text-highlight;
-  }
-
-  input:invalid,
-  select:invalid,
-  textarea:invalid {
-    border: 2px solid #ff7d87;
-    box-shadow: none;
-  }
-
-  input:disabled {
-    font-weight: bold;
-    background-color: $jira-hover;
-    text-align: center;
-    width: 100px;
-  }
-
-  .error {
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    color: red;
-    width: 420px;
-    margin-top: 0.25rem;
-    &:before {
-      content: "❌ ";
-      font-size: 10px;
-    }
-  }
 
   .form-select-wrapper {
     display: flex;
     justify-content: space-between;
 
-    .formik-select {
+    .select-grouping {
       display: flex;
       flex-direction: column;
       flex: 1;

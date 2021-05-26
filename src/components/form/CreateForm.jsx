@@ -64,6 +64,7 @@ export default function CreateForm({addIssue}) {
                     </div>
                     <div className="btn-row-create">
                         <SubmitButton
+                            type="submit"
                             disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}
                         >
                             Submit

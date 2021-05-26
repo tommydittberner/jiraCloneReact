@@ -23,6 +23,8 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
     }
 
     const onFormSubmit = async (values) => {
+
+        console.log('submitting...');
         let updatedValues = {};
 
         if(issue.title !== values.title){
@@ -108,7 +110,7 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
                         </FormikSelect>
                     </div>
                     <div className="btn-row">
-                        <FAActionIconButton>
+                        <FAActionIconButton type="button">
                             <FontAwesomeIcon
                                 icon={faTrash}
                                 size={'lg'}
@@ -116,6 +118,7 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
                             />
                         </FAActionIconButton>
                         <SubmitButton
+                            type="submit"
                             disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}>
                             Update Issue
                         </SubmitButton>

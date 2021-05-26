@@ -1,14 +1,15 @@
 import './Dialog.scss';
+import {DialogActionButton} from "../../styles/styles";
 
 export default function ConfirmationDialogActions({closeDialog, confirmDeletion}) {
     return (
         <div className="dialog-actions">
-            <button onClick={closeDialog}>
+            <DialogActionButton onClick={closeDialog}>
                 Cancel
-            </button>
-            <button onClick={confirmDeletion}>
+            </DialogActionButton>
+            <DialogActionButton onClick={confirmDeletion}>
                 Yes, I'm sure
-            </button>
+            </DialogActionButton>
         </div>
     );
 }

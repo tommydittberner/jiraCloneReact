@@ -1,12 +1,12 @@
 import './Dialog.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faWindowClose} from "@fortawesome/free-solid-svg-icons";
-import {FAActionIconButton} from "../../styles/styles";
+import {DialogHeader, FAActionIconButton, H1NoMargin} from "../../styles/styles";
 
 export default function ConfirmationDialogHeader({issueId, closeDialog}) {
     return (
-        <div className="dialog-header-row">
-            <h1 className="dialog-title">Delete issue RFM-{issueId}?</h1>
+        <DialogHeader>
+            <H1NoMargin>Delete issue RFM-{issueId}?</H1NoMargin>
             <FAActionIconButton>
                 <FontAwesomeIcon
                     onClick={closeDialog}
@@ -14,6 +14,6 @@ export default function ConfirmationDialogHeader({issueId, closeDialog}) {
                     size="2x"
                 />
             </FAActionIconButton>
-        </div>
+        </DialogHeader>
     );
 }
