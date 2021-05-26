@@ -9,6 +9,7 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {FAActionIconButton, SubmitButton} from "../../styles/styles";
 
 export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
 
@@ -65,20 +66,12 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
         >
             {({isValid, touched}) => (
                 <Form>
-                    <div className="details-form-first-row">
-                        <div>
-                            <FormikInput
-                                label="ID"
-                                name="id"
-                                type="text"
-                                disabled={true}
-                            />
-                        </div>
-                        <FontAwesomeIcon
-                            className="issue-delete-btn"
-                            icon={faTrash}
-                            size={'lg'}
-                            onClick={onDeleteIssue}
+                    <div>
+                        <FormikInput
+                            label="ID"
+                            name="id"
+                            type="text"
+                            disabled={true}
                         />
                     </div>
                     <FormikInput
@@ -94,7 +87,7 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
                         placeholder="Describe your issue"
                     />
                     <div className="form-select-wrapper">
-                        <FormikSelect label="Type" name="issueType" className="form-select">
+                        <FormikSelect label="Type" name="issueType">
                             { Object.values(ISSUE_TYPES).map((type, idx) => (
                                 <option value={type} key={idx}>
                                     {type.toLowerCase()}
@@ -114,11 +107,19 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
                             ))}
                         </FormikSelect>
                     </div>
-                    <button
-                        type="submit"
-                        disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}>
-                        Update Issue
-                    </button>
+                    <div className="btn-row">
+                        <FAActionIconButton>
+                            <FontAwesomeIcon
+                                icon={faTrash}
+                                size={'lg'}
+                                onClick={onDeleteIssue}
+                            />
+                        </FAActionIconButton>
+                        <SubmitButton
+                            disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}>
+                            Update Issue
+                        </SubmitButton>
+                    </div>
                     <ToastContainer/>
                 </Form>
             )}

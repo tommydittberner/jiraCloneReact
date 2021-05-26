@@ -3,6 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEllipsisH, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
+import {FAIconButton, TextButton} from "../../styles/styles";
 
 export default function BoardHeader({issues}) {
     const history = useHistory();
@@ -89,11 +90,13 @@ export default function BoardHeader({issues}) {
 
     return (
         <>
-            <div className="board-header">
+            <section className="board-header">
                 <h1>Board</h1>
-                <button className="board-release-btn">release</button>
-                <FontAwesomeIcon className="board-header-settings" icon={faEllipsisH}/>
-            </div>
+                <TextButton className="board-release-btn">release</TextButton>
+                <FAIconButton>
+                    <FontAwesomeIcon icon={faEllipsisH}/>
+                </FAIconButton>
+            </section>
             <form className="search-form" onSubmit={onSubmit}>
                 <input className="search-bar"
                        placeholder="Search"

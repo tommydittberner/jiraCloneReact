@@ -6,6 +6,7 @@ import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
 import { useState } from "react";
 import {doDeleteIssue} from "../../api/issueService";
+import {BackNavLink, FAActionIconButton, FAIconButton} from "../../styles/styles";
 
 
 export default function IssueDetails({updateIssue, deleteIssue}) {
@@ -35,19 +36,20 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
                 closeDialog={closeConfirmationDialog}
                 confirmDeletion={confirmDeletion}
             />
-            <div className="back-navigation">
-                <Link to="/board" className="back-link">
-                    <FontAwesomeIcon
-                        className="issue-delete-btn"
-                        icon={faArrowLeft}
-                        size={'lg'}
-                    />
+            <BackNavLink>
+                <Link to="/board" style={{textDecoration: "none"}}>
+                    <FAIconButton>
+                        <FontAwesomeIcon
+                            icon={faArrowLeft}
+                            size={'lg'}
+                        />
+                    </FAIconButton>
                     <span> Back to board</span>
                 </Link>
-            </div>
+            </BackNavLink>
             <div className="details-wrapper">
                 <div className="form-wrapper">
-                    <DetailsForm
+                    <DetgitailsForm
                         openConfirmDialog={openConfirmationDialog}
                         updateIssue={updateIssue}
                         issue={issue}

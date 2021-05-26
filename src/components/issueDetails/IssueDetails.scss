@@ -1,18 +1,5 @@
 @import "src/variables";
 
-.back-navigation {
-  margin: 1em;
-  font-weight: bold;
-  color: $jira-grey-text;
-
-  .back-link {
-    text-decoration: none;
-    &:hover {
-      color: $jira-text-highlight;
-    }
-  }
-}
-
 .details-wrapper {
   display: flex;
   flex-direction: column;

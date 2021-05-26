@@ -5,6 +5,7 @@ import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
 import * as Yup from "yup";
 import {addNewIssue} from "../../api/issueService";
 import {formValidation, storyPointValues} from "../../util/formUtil";
+import {SubmitButton} from "../../styles/styles";
 
 export default function CreateForm({addIssue}) {
     const initialFormValues = {
@@ -61,12 +62,13 @@ export default function CreateForm({addIssue}) {
                             ))}
                         </FormikSelect>
                     </div>
-                    <button
-                        type="submit"
-                        disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}
-                    >
-                        Submit
-                    </button>
+                    <div className="btn-row-create">
+                        <SubmitButton
+                            disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}
+                        >
+                            Submit
+                        </SubmitButton>
+                    </div>
                 </Form>
             )}
         </Formik>
