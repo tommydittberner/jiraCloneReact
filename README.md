@@ -7,10 +7,12 @@ A little project I did at work before the onboarding process was finished and I 
 - create popup accessible from the sidenav
 - details page for each issue (for editing an issue)
 - confirmation popup on delete
+- search for an issue by ID or by name (incl. autocompletion)
+- dark mode toggle via custom react-hook
 
 ### Todo:
-- [ ] search for an issue by ID or by name (incl. autocompletion)
-- [ ] dark mode toggle via custom react-hook
+- BE validation
+- Persist issue-sorting
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
