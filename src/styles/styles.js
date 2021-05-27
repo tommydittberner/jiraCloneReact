@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 export const TextButton = styled.button`
     padding: 0.5em 1em;
     border-radius: 8px;
+    color: ${({theme}) => theme.text};
     background-color: ${({theme}) => theme.buttonBackground};
     border: 2px solid ${({theme}) => theme.buttonBackground};
     cursor: pointer;
@@ -284,7 +286,9 @@ export const H1NoMargin = styled.h1`
     margin: 0;
 `;
 
-export const SearchBar = styled.input`
+
+// --- Search Component ---
+export const StyledSearchBar = styled.input`
     width: 240px;
     padding: 0.5em;
     border-radius: 8px;
@@ -303,6 +307,10 @@ export const SearchBar = styled.input`
         outline: none;
         border: 2px solid ${({theme}) => theme.textHighlight};
         border-radius: 10px;
+    }
+    
+    ::placeholder {
+            color: ${({theme}) => theme.greyText};
     }
 `;
 
@@ -370,4 +378,13 @@ export const IssueIcon = styled.label`
                 return theme.issueGreen;
         }
     }};
+`;
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: ${({theme}) => theme.text};
+    
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
 `;

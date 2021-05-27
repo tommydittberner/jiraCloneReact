@@ -12,8 +12,7 @@ import {
     faTasks
 } from "@fortawesome/free-solid-svg-icons";
 import {faReact} from "@fortawesome/free-brands-svg-icons";
-import {Link} from "react-router-dom";
-import {Header, JiraSidenav, List, ListItemTextAndIcon} from "../styles/styles";
+import {Header, JiraSidenav, List, ListItemTextAndIcon, StyledLink} from "../styles/styles";
 
 export default function Sidenav({openCreateDialog}) {
     return (
@@ -30,12 +29,13 @@ export default function Sidenav({openCreateDialog}) {
                     <FontAwesomeIcon icon={faStream}/>
                     <span>Backlog</span>
                 </ListItemTextAndIcon>
-                <Link to="/board" style={{textDecoration: "none"}}>
+                {/*Figure out how to style this with the theme*/}
+                <StyledLink to="/board">
                     <ListItemTextAndIcon>
                         <FontAwesomeIcon icon={faColumns}/>
                         <span>Board</span>
                     </ListItemTextAndIcon>
-                </Link>
+                </StyledLink>
                 <ListItemTextAndIcon className="menu-disabled">
                     <FontAwesomeIcon icon={faChartLine}/>
                     <span>Reports</span>
