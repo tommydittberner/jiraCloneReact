@@ -1,7 +1,6 @@
-import {fireEvent, getByRole, getByText, render, screen} from '@testing-library/react';
-import Sidenav from "../components/Sidenav";
+import {getByText, render} from '@testing-library/react';
+import Sidenav from "./Sidenav";
 import {BrowserRouter} from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 describe('Sidenav', () => {
     test('renders header correctly', () => {

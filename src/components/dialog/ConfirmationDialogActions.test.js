@@ -1,5 +1,5 @@
 import {render, fireEvent} from "@testing-library/react";
-import ConfirmationDialogActions from "../components/dialog/ConfirmationDialogActions";
+import ConfirmationDialogActions from "./ConfirmationDialogActions";
 
 describe('ConfirmationDialogActions', () => {
     test('shows cancel button', () => {
@@ -12,7 +12,7 @@ describe('ConfirmationDialogActions', () => {
         const cancelBtn = getByText('Cancel');
         fireEvent.click(cancelBtn);
         expect(handleCancel).toHaveBeenCalledTimes(1);
-    });
+    })
 
     test('shows confirmation button', () => {
        const handleConfirm = jest.fn();
@@ -24,5 +24,5 @@ describe('ConfirmationDialogActions', () => {
         const confirmBtn = getByText('Yes, I\'m sure');
         fireEvent.click(confirmBtn);
         expect(handleConfirm).toHaveBeenCalledTimes(1);
-    });
+    })
 })
