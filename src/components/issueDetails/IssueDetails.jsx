@@ -29,27 +29,7 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
     }
 
     const onFormSubmit = async (values) => {
-        console.log('submitting...');
-        let updatedValues = {};
-
-        if(issue.title !== values.title){
-            updatedValues["title"] = values.title;
-        }
-        if(issue.description !== values.description){
-            updatedValues["description"] = values.description;
-        }
-        if(issue.type !== values.issueType){
-            updatedValues["type"] = values.issueType;
-        }
-        if(issue.priority !== values.issuePriority){
-            updatedValues["priority"] = values.issuePriority;
-        }
-        if(issue.storypoints !== values.storypoints){
-            updatedValues["storypoints"] = values.storypoints;
-        }
-
-        updateIssue(await doUpdateIssue(issue.id, updatedValues));
-
+        updateIssue(await doUpdateIssue(issue.id, values));
         toast('Update successful!', {
             position: "top-right",
             autoClose: 3000,

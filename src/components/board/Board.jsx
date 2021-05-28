@@ -4,64 +4,49 @@ import {STATUS_TYPES} from "../../util/contants";
 import {useState, useEffect} from 'react';
 import {DragDropContext} from "react-beautiful-dnd";
 import BoardHeader from "./BoardHeader";
-import {doUpdateIssue} from "../../api/issueService";
-
-//todo: columns with their names and ids are hardcoded in this project (for now...).
-const getNewStatus = (destColumnId) => {
-    switch (destColumnId) {
-        case 2:
-            return STATUS_TYPES.IN_PROGRESS
-        case 3:
-            return STATUS_TYPES.PEER_REVIEW
-        case 4:
-            return STATUS_TYPES.DONE
-        case 1:
-        default:
-            return STATUS_TYPES.OPEN
-    }
-}
+import {updateBoard} from "../../api/issueService";
 
 const onDragEnd = async (result, columns, setColumns) => {
     if (!result.destination) return;
     const {source, destination} = result;
 
-    //items placed on different column than before
-    //since they get sorted by id reordering in the same column is deactivated
+    //items dropped in different column
     if (source.droppableId !== destination.droppableId) {
-        let sourceId = parseInt(source.droppableId);
-        let destId = parseInt(destination.droppableId);
-
-        // only go right one column at a time
-        // going left means reopening the issue so it is put in column 1 again
-        destId = (destId > sourceId) ? sourceId + 1 : 1;
-
-        const sourceColumn = columns[sourceId];
-        const destColumn = columns[destId];
+        const sourceColumn = columns[source.droppableId];
+        const destColumn = columns[destination.droppableId];
         const sourceItems = [...sourceColumn.items];
         const destItems = [...destColumn.items];
         let [movedIssue] = sourceItems.splice(source.index, 1);
-
-        // update status of issue
-        movedIssue = await doUpdateIssue(
-            movedIssue.id,
-            {"status": getNewStatus(destId)}
-        )
-
-        destItems.push(movedIssue);
-        destItems.sort((a, b) => a.id - b.id)
+        destItems.splice(destination.index, 0, movedIssue);
 
         setColumns({
             ...columns,
-            [sourceId]: {
+            [source.droppableId]: {
                 ...sourceColumn,
                 items: sourceItems
             },
-            [destId]: {
+            [destination.droppableId]: {
                 ...destColumn,
                 items: destItems
             }
         });
+        // same column (droppableId is the same in source and destination)
+    } else {
+        const column = columns[destination.droppableId]
+        const items = [...column.items];
+        let [movedIssue] = items.splice(source.index, 1);
+        items.splice(destination.index, 0, movedIssue);
+
+        setColumns({
+            ...columns,
+            [destination.droppableId]: {
+                ...column,
+                items: items
+            }
+        });
     }
+
+    // await updateBoard(source, destination);
 };
 
 const insertIssuesIntoColumns = (issues) => {

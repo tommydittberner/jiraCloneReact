@@ -29,18 +29,32 @@ export const addNewIssue = async (issue) => {
     }).then(res => res.json());
 }
 
-export const doUpdateIssue = async (id, values) => {
-    let requestParams = "";
-    Object.entries(values).map(([k, v], idx) => {
-        return idx === 0 ?
-            requestParams += "?" + k + "=" + v :
-            requestParams += "&" + k + "=" + v;
-    });
-
-    let url = `${uriBase}/${id}${requestParams}`;
+export const updateBoard = async (source, dest) => {
+    let url = `${uriBase}`;
     return await fetch(url, {
         method: 'PUT',
         headers: headers,
+        body: {
+            "sourceColumn": source.droppableId,
+            "destinationColumn": dest.droppableId,
+            "sourceIndex": source.index,
+            "destinationIndex": dest.index
+        }
+    }) //void response
+}
+
+export const doUpdateIssue = async (id, values) => {
+    let url = `${uriBase}/${id}`;
+    return await fetch(url, {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify({
+            "title": values.title,
+            "description" : values.description,
+            "type": values.issueType,
+            "priority": values.issuePriority,
+            "storypoints": values.storypoints,
+        })
     }).then(res => res.json());
 }
 
