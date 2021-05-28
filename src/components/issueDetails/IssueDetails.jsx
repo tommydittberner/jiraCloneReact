@@ -5,8 +5,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
 import {useState} from "react";
-import {doDeleteIssue} from "../../api/issueService";
+import {doDeleteIssue, doUpdateIssue} from "../../api/issueService";
 import {BackNavLink, FAIconButton} from "../../styles/styles";
+import {toast} from "react-toastify";
 
 export default function IssueDetails({updateIssue, deleteIssue}) {
     let history = useHistory();
@@ -25,6 +26,39 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
         await doDeleteIssue(issue.id);
         deleteIssue(issue.id);
         navigateToBoard();
+    }
+
+    const onFormSubmit = async (values) => {
+        console.log('submitting...');
+        let updatedValues = {};
+
+        if(issue.title !== values.title){
+            updatedValues["title"] = values.title;
+        }
+        if(issue.description !== values.description){
+            updatedValues["description"] = values.description;
+        }
+        if(issue.type !== values.issueType){
+            updatedValues["type"] = values.issueType;
+        }
+        if(issue.priority !== values.issuePriority){
+            updatedValues["priority"] = values.issuePriority;
+        }
+        if(issue.storypoints !== values.storypoints){
+            updatedValues["storypoints"] = values.storypoints;
+        }
+
+        updateIssue(await doUpdateIssue(issue.id, updatedValues));
+
+        toast('Update successful!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     return (
@@ -49,9 +83,9 @@ export default function IssueDetails({updateIssue, deleteIssue}) {
             <div className="details-wrapper">
                 <div className="form-wrapper">
                     <DetailsForm
-                        openConfirmDialog={openConfirmationDialog}
-                        updateIssue={updateIssue}
                         issue={issue}
+                        onDelete={openConfirmationDialog}
+                        onSubmit={onFormSubmit}
                     />
                 </div>
             </div>

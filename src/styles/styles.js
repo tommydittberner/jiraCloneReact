@@ -48,14 +48,14 @@ export const FAIconButton = styled.button`
     padding: 1em;
 `;
 
-export const FAActionIconButton = styled(FAIconButton)`
+export const ActionIconButton = styled(FAIconButton)`
      &:hover {
         color: ${({theme}) => theme.textHighlight};
         transform: scale(1.1);
     }
 `;
 
-export const FAIconButtonMenu = styled(FAIconButton)`
+export const IconButtonMenu = styled(FAIconButton)`
     margin: 0.5em;
     color: white;
 `;
@@ -226,7 +226,7 @@ export const FormSelect = styled.select`
     }
 `;
 
-export const ErrorLabel = styled.label`
+export const ErrorLabel = styled.div`
     display: flex;
     align-items: center;
     font-size: 12px;

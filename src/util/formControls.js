@@ -6,9 +6,12 @@ export const FormikInput = ({label, ...props}) => {
     return (
         <>
             <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
-            <FormInput {...field} {...props} />
+            <FormInput id={props.id || props.name} {...field} {...props} />
             {meta.touched && meta.error ? (
-                <ErrorLabel>{meta.error}</ErrorLabel>
+                <ErrorLabel
+                    name={props.id || props.name}
+                    data-testid="input-error"
+                >{meta.error}</ErrorLabel>
             ) : null}
         </>
     );
@@ -20,7 +23,7 @@ export const FormikTextarea = ({label, ...props}) => {
     return (
         <>
             <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
-            <FormTextfield {...field} {...props} />
+            <FormTextfield id={props.id || props.name} {...field} {...props} />
             {meta.touched && meta.error ? (
                 <ErrorLabel>{meta.error}</ErrorLabel>
             ) : null}
@@ -34,7 +37,7 @@ export const FormikSelect = ({label, ...props}) => {
         //this has to be a div for use with "display: flex;"
         <div className="select-grouping">
             <FormLabel htmlFor={props.id || props.name}>{label}</FormLabel>
-            <FormSelect {...field} {...props} />
+            <FormSelect id={props.id || props.name} {...field} {...props} />
             {meta.touched && meta.error ? (
                 <ErrorLabel>{meta.error}</ErrorLabel>
             ) : null}

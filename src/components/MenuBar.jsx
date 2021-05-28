@@ -2,47 +2,46 @@ import './MenuBar.scss';
 import {faMoon, faPlus, faQuestionCircle, faSearch, faSun} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faJira} from "@fortawesome/free-brands-svg-icons";
-import {FAIconButtonMenu, Header, JiraMenu} from "../styles/styles";
+import {IconButtonMenu, Header, JiraMenu} from "../styles/styles";
 
 export default function MenuBar({openCreateDialog, theme, toggleTheme}) {
-
     return (
         <JiraMenu>
             <Header>
-                <FAIconButtonMenu>
+                <IconButtonMenu>
                     <FontAwesomeIcon
                         icon={faJira}
                         size="2x"
                     />
-                </FAIconButtonMenu>
+                </IconButtonMenu>
             </Header>
             <section className="menu-bar-btn-container">
-                <FAIconButtonMenu>
+                <IconButtonMenu>
                     <FontAwesomeIcon
                         icon={faSearch}
                         size="lg"
                     />
-                </FAIconButtonMenu>
-                <FAIconButtonMenu>
+                </IconButtonMenu>
+                <IconButtonMenu>
                     <FontAwesomeIcon
                         icon={faPlus}
                         size="lg"
                         onClick={openCreateDialog}
                     />
-                </FAIconButtonMenu>
-                <FAIconButtonMenu>
+                </IconButtonMenu>
+                <IconButtonMenu>
                     <FontAwesomeIcon
                         icon={theme === 'light' ? faMoon : faSun}
                         size="lg"
                         onClick={toggleTheme}
                     />
-                </FAIconButtonMenu>
-                <FAIconButtonMenu className="menu-bar-bottom-button">
+                </IconButtonMenu>
+                <IconButtonMenu className="menu-bar-bottom-button">
                     <FontAwesomeIcon
                         icon={faQuestionCircle}
                         size="lg"
                     />
-                </FAIconButtonMenu>
+                </IconButtonMenu>
             </section>
         </JiraMenu>
     );

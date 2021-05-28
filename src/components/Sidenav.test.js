@@ -14,7 +14,9 @@ describe('Sidenav', () => {
         // getBy - returns an element or an error
         // queryBy - use when you are asserting an element that isn't there
         // findBy - used for asynchronous elements which will be there eventually
-        getByText("Done with React")
+
+        //(/.../i = case insensitive)
+        getByText(/done with react/i)
         // full text match
         getByText("ITF Refinement")
         // partial match through regex

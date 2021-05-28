@@ -4,17 +4,15 @@ import * as Yup from "yup";
 import {FormikInput, FormikSelect, FormikTextarea} from "../../util/formControls";
 import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
 import {formValidation, storyPointValues} from "../../util/formUtil";
-import {doUpdateIssue} from "../../api/issueService";
-import {toast, ToastContainer} from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {FAActionIconButton, SubmitButton} from "../../styles/styles";
+import {ActionIconButton, SubmitButton} from "../../styles/styles";
 
-export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
-
+export default function DetailsForm({issue, onDelete, onSubmit}) {
     const initialFormValues = {
-        id: "RFM-" + issue.id, //todo: project id should not be hardcoded
+        id: "RFM-" + issue.id, //todo: project abbreviation should not be hardcoded
         title: issue.title,
         description: issue.description,
         issueType: issue.type,
@@ -22,49 +20,11 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
         storypoints: issue.storypoints
     }
 
-    const onFormSubmit = async (values) => {
-
-        console.log('submitting...');
-        let updatedValues = {};
-
-        if(issue.title !== values.title){
-            updatedValues["title"] = values.title;
-        }
-        if(issue.description !== values.description){
-            updatedValues["description"] = values.description;
-        }
-        if(issue.type !== values.issueType){
-            updatedValues["type"] = values.issueType;
-        }
-        if(issue.priority !== values.issuePriority){
-            updatedValues["priority"] = values.issuePriority;
-        }
-        if(issue.storypoints !== values.storypoints){
-            updatedValues["storypoints"] = values.storypoints;
-        }
-
-        updateIssue(await doUpdateIssue(issue.id, updatedValues));
-
-        toast('Update successful!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
-    }
-
-    const onDeleteIssue = () => {
-        openConfirmDialog();
-    }
-
     return (
         <Formik
             initialValues={initialFormValues}
             validationSchema={Yup.object(formValidation)}
-            onSubmit={onFormSubmit}
+            onSubmit={onSubmit}
         >
             {({isValid, touched}) => (
                 <Form>
@@ -72,6 +32,7 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
                         <FormikInput
                             label="ID"
                             name="id"
+                            id="id"
                             type="text"
                             disabled={true}
                         />
@@ -79,47 +40,57 @@ export default function DetailsForm({openConfirmDialog, updateIssue, issue}) {
                     <FormikInput
                         label="Title"
                         name="title"
+                        id="title"
                         type="text"
                         placeholder="Add shopping cart page"
                     />
                     <FormikTextarea
                         label="Description"
                         name="description"
+                        id="description"
                         type="text"
                         placeholder="Describe your issue"
                     />
                     <div className="form-select-wrapper">
-                        <FormikSelect label="Type" name="issueType">
+                        <FormikSelect
+                            label="Type"
+                            name="issueType"
+                        >
                             { Object.values(ISSUE_TYPES).map((type, idx) => (
                                 <option value={type} key={idx}>
                                     {type.toLowerCase()}
                                 </option>
                             ))}
                         </FormikSelect>
-                        <FormikSelect label="Priority" name="issuePriority">
+                        <FormikSelect
+                            label="Priority"
+                            name="issuePriority"
+                        >
                             { Object.values(PRIORITY_LEVEL).map((priority, idx) => (
                                 <option value={priority} key={idx}>
                                     {priority.toLowerCase()}
                                 </option>
                             ))}
                         </FormikSelect>
-                        <FormikSelect label="SP" name="storypoints">
+                        <FormikSelect
+                            label="SP"
+                            name="storypoints"
+                        >
                             { storyPointValues.map((sp, idx) => (
                                 <option value={sp} key={idx}>{sp}</option>
                             ))}
                         </FormikSelect>
                     </div>
                     <div className="btn-row">
-                        <FAActionIconButton type="button">
+                        <ActionIconButton type="button" title="delete" onClick={onDelete}>
                             <FontAwesomeIcon
                                 icon={faTrash}
                                 size={'lg'}
-                                onClick={onDeleteIssue}
                             />
-                        </FAActionIconButton>
-                        <SubmitButton
-                            type="submit"
-                            disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}>
+                        </ActionIconButton>
+                        <SubmitButton type="submit"
+                            disabled={!isValid || (Object.keys(touched).length === 0 && touched.constructor === Object)}
+                        >
                             Update Issue
                         </SubmitButton>
                     </div>
