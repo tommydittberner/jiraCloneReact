@@ -11,8 +11,9 @@ A little project I did at work before the onboarding process was finished and I 
 - dark mode toggle via custom react-hook
 
 ### Todo:
-- BE validation
-- Persist issue-sorting
+- [ ] add functional search bar to the blue menu bar
+- [ ] make the site more responsive for smaller screens (no mobile view planned)
+- [ ] maybe: implement a backlog page
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
