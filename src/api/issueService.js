@@ -20,8 +20,8 @@ export const addNewIssue = async (issue) => {
         headers: headers,
         body: JSON.stringify({
             "title": issue.title,
-            "description" : issue.description,
-            "status" : STATUS_TYPES.OPEN,
+            "description": issue.description,
+            "status": STATUS_TYPES.OPEN,
             "type": issue.issueType,
             "priority": issue.issuePriority,
             "storypoints": issue.storypoints,
@@ -30,17 +30,11 @@ export const addNewIssue = async (issue) => {
 }
 
 export const updateBoard = async (source, dest) => {
-    let url = `${uriBase}`;
+    let url = `${uriBase}?sourceCol=${source.droppableId}&sourceIdx=${source.index}&destCol=${dest.droppableId}&destIdx=${dest.index}`;
     return await fetch(url, {
         method: 'PUT',
         headers: headers,
-        body: {
-            "sourceColumn": source.droppableId,
-            "destinationColumn": dest.droppableId,
-            "sourceIndex": source.index,
-            "destinationIndex": dest.index
-        }
-    }) //void response
+    }).then(res => res.json());
 }
 
 export const doUpdateIssue = async (id, values) => {
@@ -50,7 +44,7 @@ export const doUpdateIssue = async (id, values) => {
         headers: headers,
         body: JSON.stringify({
             "title": values.title,
-            "description" : values.description,
+            "description": values.description,
             "type": values.issueType,
             "priority": values.issuePriority,
             "storypoints": values.storypoints,

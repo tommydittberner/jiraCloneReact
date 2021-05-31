@@ -19,15 +19,17 @@ const onDragEnd = async (result, columns, setColumns) => {
         let [movedIssue] = sourceItems.splice(source.index, 1);
         destItems.splice(destination.index, 0, movedIssue);
 
+        let updatedColumns = await updateBoard(source, destination);
+
         setColumns({
             ...columns,
             [source.droppableId]: {
                 ...sourceColumn,
-                items: sourceItems
+                items: updatedColumns[0]
             },
             [destination.droppableId]: {
                 ...destColumn,
-                items: destItems
+                items: updatedColumns[1]
             }
         });
         // same column (droppableId is the same in source and destination)
@@ -37,6 +39,9 @@ const onDragEnd = async (result, columns, setColumns) => {
         let [movedIssue] = items.splice(source.index, 1);
         items.splice(destination.index, 0, movedIssue);
 
+        //todo: update board when moved in same column, too
+        // await updateBoard(source, destination);
+
         setColumns({
             ...columns,
             [destination.droppableId]: {
@@ -45,8 +50,6 @@ const onDragEnd = async (result, columns, setColumns) => {
             }
         });
     }
-
-    // await updateBoard(source, destination);
 };
 
 const insertIssuesIntoColumns = (issues) => {
