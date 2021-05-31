@@ -6,49 +6,60 @@ import {DragDropContext} from "react-beautiful-dnd";
 import BoardHeader from "./BoardHeader";
 import {updateBoard} from "../../api/issueService";
 
+
+const onSameColumnReorder = async (columns, setColumns, source, destination) => {
+    const column = columns[destination.droppableId]
+    const items = [...column.items];
+    let [movedIssue] = items.splice(source.index, 1);
+    items.splice(destination.index, 0, movedIssue);
+
+    let updatedColumns = await updateBoard(movedIssue.id, source, destination);
+
+    updatedColumns[0].sort(sortBySortingIdx);
+
+    setColumns({
+        ...columns,
+        [destination.droppableId]: {
+            ...column,
+            items: updatedColumns[0]
+        }
+    });
+}
+
+const onDifferentColumnReorder = async (columns, setColumns, source, destination) => {
+    const sourceColumn = columns[source.droppableId];
+    const destColumn = columns[destination.droppableId];
+    const sourceItems = [...sourceColumn.items];
+    const destItems = [...destColumn.items];
+    let [movedIssue] = sourceItems.splice(source.index, 1);
+    destItems.splice(destination.index, 0, movedIssue);
+
+    let updatedColumns = await updateBoard(movedIssue.id, source, destination);
+
+    updatedColumns[0].sort(sortBySortingIdx);
+    updatedColumns[1].sort(sortBySortingIdx);
+
+    setColumns({
+        ...columns,
+        [source.droppableId]: {
+            ...sourceColumn,
+            items: updatedColumns[0]
+        },
+        [destination.droppableId]: {
+            ...destColumn,
+            items: updatedColumns[1]
+        }
+    });
+}
+
 const onDragEnd = async (result, columns, setColumns) => {
     if (!result.destination) return;
     const {source, destination} = result;
 
-    //items dropped in different column
     if (source.droppableId !== destination.droppableId) {
-        const sourceColumn = columns[source.droppableId];
-        const destColumn = columns[destination.droppableId];
-        const sourceItems = [...sourceColumn.items];
-        const destItems = [...destColumn.items];
-        let [movedIssue] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, movedIssue);
-
-        let updatedColumns = await updateBoard(source, destination);
-
-        setColumns({
-            ...columns,
-            [source.droppableId]: {
-                ...sourceColumn,
-                items: updatedColumns[0]
-            },
-            [destination.droppableId]: {
-                ...destColumn,
-                items: updatedColumns[1]
-            }
-        });
-        // same column (droppableId is the same in source and destination)
+        await onDifferentColumnReorder(columns, setColumns, source, destination)
     } else {
-        const column = columns[destination.droppableId]
-        const items = [...column.items];
-        let [movedIssue] = items.splice(source.index, 1);
-        items.splice(destination.index, 0, movedIssue);
-
-        //todo: update board when moved in same column, too
-        // await updateBoard(source, destination);
-
-        setColumns({
-            ...columns,
-            [destination.droppableId]: {
-                ...column,
-                items: items
-            }
-        });
+        await onSameColumnReorder(columns, setColumns, source, destination)
     }
 };
 
@@ -56,21 +67,37 @@ const insertIssuesIntoColumns = (issues) => {
     return {
         "1": {
             name: STATUS_TYPES.OPEN,
-            items: [...issues.filter((i) => i.status === STATUS_TYPES.OPEN)]
+            items: [...issues
+                .filter((i) => i.status === STATUS_TYPES.OPEN)
+                .sort(sortBySortingIdx)
+            ]
         },
         "2": {
             name: STATUS_TYPES.IN_PROGRESS,
-            items: [...issues.filter((i) => i.status === STATUS_TYPES.IN_PROGRESS)]
+            items: [...issues
+                .filter((i) => i.status === STATUS_TYPES.IN_PROGRESS)
+                .sort(sortBySortingIdx)
+            ]
         },
         "3": {
             name: STATUS_TYPES.PEER_REVIEW,
-            items: [...issues.filter((i) => i.status === STATUS_TYPES.PEER_REVIEW)]
+            items: [...issues
+                .filter((i) => i.status === STATUS_TYPES.PEER_REVIEW)
+                .sort(sortBySortingIdx)
+            ]
         },
         "4": {
             name: STATUS_TYPES.DONE,
-            items: [...issues.filter((i) => i.status === STATUS_TYPES.DONE)]
+            items: [...issues
+                .filter((i) => i.status === STATUS_TYPES.DONE)
+                .sort(sortBySortingIdx)
+            ]
         }
     }
+}
+
+function sortBySortingIdx(a, b) {
+    return a.sortingIdx - b.sortingIdx;
 }
 
 export default function Board({issues}) {

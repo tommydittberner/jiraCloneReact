@@ -29,8 +29,8 @@ export const addNewIssue = async (issue) => {
     }).then(res => res.json());
 }
 
-export const updateBoard = async (source, dest) => {
-    let url = `${uriBase}?sourceCol=${source.droppableId}&sourceIdx=${source.index}&destCol=${dest.droppableId}&destIdx=${dest.index}`;
+export const updateBoard = async (id, source, dest) => {
+    let url = `${uriBase}?issueId=${id}&sourceCol=${source.droppableId}&sourceIdx=${source.index}&destCol=${dest.droppableId}&destIdx=${dest.index}`;
     return await fetch(url, {
         method: 'PUT',
         headers: headers,
