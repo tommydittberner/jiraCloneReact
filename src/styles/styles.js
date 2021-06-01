@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
+
+export const MainContainer = styled.div`
+    padding-left: 320px;
+`;
+
 export const TextButton = styled.button`
     padding: 0.5em 1em;
     border-radius: 8px;
@@ -110,7 +115,7 @@ export const ListItemTextAndIcon = styled.li`
 
 export const Card = styled.div`
     margin: 6px 0;
-    padding: 12px;
+    padding: 0.75em;
     background-color: ${({theme}) => theme.body};
     border-radius: 4px;
     box-shadow: ${({theme}) => theme.boxShadow};
@@ -366,18 +371,18 @@ export const StyledStatusColumnHeader = styled.div`
 
 export const IssueIcon = styled.label`
     color: ${({theme}) => props => {
-        switch (props.iconColor) {
-            case "red":
-                return theme.issueRed;
-            case "blue":
-                return theme.issueBlue;
-            case "yellow":
-                return theme.issueYellow;
-            case "green":
-            default:
-                return theme.issueGreen;
-        }
-    }};
+    switch (props.iconColor) {
+        case "red":
+            return theme.issueRed;
+        case "blue":
+            return theme.issueBlue;
+        case "yellow":
+            return theme.issueYellow;
+        case "green":
+        default:
+            return theme.issueGreen;
+    }
+}};
 `;
 
 export const StyledLink = styled(Link)`

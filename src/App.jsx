@@ -1,4 +1,3 @@
-import './App.scss'
 import Board from "./components/board/Board";
 import Sidenav from "./components/Sidenav";
 import MenuBar from "./components/MenuBar";
@@ -11,6 +10,7 @@ import {ThemeProvider} from "styled-components";
 import useTheme from "./hooks/useTheme";
 import {lightTheme, darkTheme} from "./styles/theme";
 import {GlobalStyles} from "./styles/global";
+import {MainContainer} from "./styles/styles";
 
 function App() {
     const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -50,7 +50,7 @@ function App() {
                 <GlobalStyles />
                 <MenuBar openCreateDialog={openCreateDialog} theme={theme} toggleTheme={toggleTheme}/>
                 <Sidenav openCreateDialog={openCreateDialog}/>
-                <div className="main">
+                <MainContainer>
                     <CreateDialog
                         open={createDialogOpen}
                         closeDialog={closeCreateDialog}
@@ -71,7 +71,7 @@ function App() {
                             <Board issues={issues} />
                         </Route>
                     </Switch>
-                </div>
+                </MainContainer>
             </ThemeProvider>
         </BrowserRouter>
     );
