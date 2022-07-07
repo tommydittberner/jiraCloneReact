@@ -11,7 +11,7 @@ export default function SearchBar({issues}) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        //we can navigate on submit if there is only a single matching issue available
+        //directly navigate on submit if there is only a single matching issue available
         matches.length === 1 && navigateToDetails(matches[0]);
     }
 
@@ -24,13 +24,13 @@ export default function SearchBar({issues}) {
 
     const findMatches = (e) => {
         let searchTerm = e.target.value.toLowerCase();
-        setQuery(searchTerm);
 
-        // return no results when search bar is empty
-        if (searchTerm === '' || searchTerm === null || searchTerm === undefined) {
+        if (!searchTerm) {
             setMatches([]);
             return;
         }
+
+        setQuery(searchTerm);
 
         const matchingIssues = [];
         issues.forEach((issue) => {
@@ -41,7 +41,7 @@ export default function SearchBar({issues}) {
                     issue,
                     0
                 ]);
-                // give a score by position of the match
+            // give a score by position of the match
             } else if (issue.title.toLowerCase().includes(searchTerm)) {
                 matchingIssues.push([
                     issue.id,
@@ -64,7 +64,6 @@ export default function SearchBar({issues}) {
         const sortedMatches = [];
         matchingIssues.forEach((match) => sortedMatches.push(match[1]));
 
-        //return list of matches
         setMatches(sortedMatches);
     }
 

@@ -2,8 +2,8 @@ import './Form.scss';
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import {FormikInput, FormikSelect, FormikTextarea} from "../../util/formControls";
-import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
-import {formValidation, storyPointValues} from "../../util/formUtil";
+import {ISSUE_TYPES, PRIORITY_LEVEL, STORY_POINT_VALUES} from "../../util/contants";
+import {formValidation} from "../../util/formValidation";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.min.css';
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
@@ -28,21 +28,19 @@ export default function DetailsForm({issue, onDelete, onSubmit}) {
         >
             {({isValid, touched}) => (
                 <Form>
-                    <div>
-                        <FormikInput
-                            label="ID"
-                            name="id"
-                            id="id"
-                            type="text"
-                            disabled={true}
-                        />
-                    </div>
+                    <FormikInput
+                        label="ID"
+                        name="id"
+                        id="id"
+                        type="text"
+                        disabled={true}
+                    />
                     <FormikInput
                         label="Title"
                         name="title"
                         id="title"
                         type="text"
-                        placeholder="Add shopping cart page"
+                        placeholder="Title"
                     />
                     <FormikTextarea
                         label="Description"
@@ -76,7 +74,7 @@ export default function DetailsForm({issue, onDelete, onSubmit}) {
                             label="SP"
                             name="storypoints"
                         >
-                            { storyPointValues.map((sp, idx) => (
+                            { STORY_POINT_VALUES.map((sp, idx) => (
                                 <option value={sp} key={idx}>{sp}</option>
                             ))}
                         </FormikSelect>

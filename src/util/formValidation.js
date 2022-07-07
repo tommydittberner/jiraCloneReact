@@ -1,7 +1,6 @@
 import * as Yup from "yup";
-import {ISSUE_TYPES, PRIORITY_LEVEL} from "./contants";
+import {ISSUE_TYPES, PRIORITY_LEVEL, STORY_POINT_VALUES} from "./contants";
 
-export const storyPointValues = [1, 2, 3, 5, 8, 13];
 export const formValidation = {
     title: Yup.string()
         .max(70, "Must be 70 characters or less")
@@ -31,6 +30,6 @@ export const formValidation = {
         )
         .required("Required"),
     storypoints: Yup.number()
-        .oneOf([1, 2, 3, 5, 8, 13])
+        .oneOf([...STORY_POINT_VALUES])
         .required("Required"),
 };

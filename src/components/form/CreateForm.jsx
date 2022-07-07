@@ -1,10 +1,10 @@
 import './Form.scss';
 import {Form, Formik} from "formik";
 import {FormikInput, FormikSelect, FormikTextarea} from "../../util/formControls";
-import {ISSUE_TYPES, PRIORITY_LEVEL} from "../../util/contants";
+import {ISSUE_TYPES, PRIORITY_LEVEL, STORY_POINT_VALUES} from "../../util/contants";
 import * as Yup from "yup";
 import {addNewIssue} from "../../api/issueService";
-import {formValidation, storyPointValues} from "../../util/formUtil";
+import {formValidation} from "../../util/formValidation";
 import {SubmitButton} from "../../styles/styles";
 
 export default function CreateForm({addIssue}) {
@@ -33,7 +33,7 @@ export default function CreateForm({addIssue}) {
                         label="Title"
                         name="title"
                         type="text"
-                        placeholder="Add shopping cart page"
+                        placeholder="Title"
                     />
                     <FormikTextarea
                         label="Description"
@@ -57,7 +57,7 @@ export default function CreateForm({addIssue}) {
                             ))}
                         </FormikSelect>
                         <FormikSelect label="SP" name="storypoints">
-                            {storyPointValues.map((sp, idx) => (
+                            {STORY_POINT_VALUES.map((sp, idx) => (
                                 <option value={sp} key={idx}>{sp}</option>
                             ))}
                         </FormikSelect>

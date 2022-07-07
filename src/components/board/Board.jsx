@@ -96,9 +96,7 @@ const insertIssuesIntoColumns = (issues) => {
     }
 }
 
-function sortBySortingIdx(a, b) {
-    return a.sortingIdx - b.sortingIdx;
-}
+const sortBySortingIdx = (a, b) => a.sortingIdx - b.sortingIdx;
 
 export default function Board({issues}) {
     const [columns, setColumns] = useState(insertIssuesIntoColumns(issues));

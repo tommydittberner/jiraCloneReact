@@ -4,7 +4,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faJira} from "@fortawesome/free-brands-svg-icons";
 import {IconButtonMenu, Header, JiraMenu} from "../styles/styles";
 
-export default function MenuBar({openCreateDialog, theme, toggleTheme}) {
+export default function MenuBar({
+    openCreateDialog, 
+    theme, 
+    toggleTheme,
+}) {
     return (
         <JiraMenu>
             <Header>

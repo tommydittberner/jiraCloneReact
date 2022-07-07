@@ -19,28 +19,27 @@ function App() {
 
     const openCreateDialog = () => setCreateDialogOpen(true);
     const closeCreateDialog = () => setCreateDialogOpen(false);
+
     const addIssue = (newIssue) => {
         setCreateDialogOpen(false);
         setIssues([...issues, newIssue]);
     }
 
-    const updateIssue = (updatedIssue) => {
-        let copy = [...issues.filter(i => i.id !== updatedIssue.id)];
-        //no specific order needed since it gets ordered in the column
-        setIssues([...copy, updatedIssue]);
-    }
-
-    const deleteIssue = (deletedId) => {
-        let issuesWithoutDeleted = [...issues.filter(i => i.id !== deletedId)];
-        setIssues([...issuesWithoutDeleted]);
-    }
+    const updateIssue = (updatedIssue) => setIssues(
+        // reordering is done at a later point
+        [...issues.filter(i => i.id !== updatedIssue.id), updatedIssue]
+    );
+    
+    const deleteIssue = (deletedId) => setIssues(
+        [...issues.filter(i => i.id !== deletedId)]
+    );
 
     //get issues once initially (and on reload)
     useEffect(() => {
         fetchIssues().then(response => {
-            if (response) {
-                setIssues(response);
-            }
+        if (response) {
+            setIssues(response);
+        }
         });
     }, []);
 
@@ -48,7 +47,11 @@ function App() {
         <BrowserRouter>
             <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
                 <GlobalStyles />
-                <MenuBar openCreateDialog={openCreateDialog} theme={theme} toggleTheme={toggleTheme}/>
+                <MenuBar 
+                    openCreateDialog={openCreateDialog} 
+                    theme={theme} 
+                    toggleTheme={toggleTheme}
+                />
                 <Sidenav openCreateDialog={openCreateDialog}/>
                 <MainContainer>
                     <CreateDialog

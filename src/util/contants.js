@@ -19,3 +19,5 @@ export const PRIORITY_LEVEL = {
     HIGH: "HIGH",
     BLOCKER: "BLOCKER",
 }
+
+export const STORY_POINT_VALUES = [1, 2, 3, 5, 8, 13];

@@ -16,6 +16,11 @@ export const TextButton = styled.button`
     text-transform: capitalize;
 `;
 
+export const DialogActionGroup = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`;
+
 export const DialogActionButton = styled(TextButton)`
     margin: 0.25em 0.5em;
     color: ${({theme}) => theme.text};
@@ -137,6 +142,7 @@ export const TextLabel = styled.label`
 export const IDTag = styled.label`
     color: ${({theme}) => theme.greyText};
     text-transform: uppercase;
+    marginLeft: auto;
 `;
 
 export const StyledStatusColumn = styled.div`
@@ -392,4 +398,9 @@ export const StyledLink = styled(Link)`
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
     }
+`;
+
+export const IssueInfo = styled.div`
+    display: flex;
+    align-items: center;
 `;
